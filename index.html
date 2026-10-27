@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="theme-color" content="#f4f4f1">
+<title>训练教练台 · Fitness Coaching Hub</title>
+<style>
+  :root {
+    color-scheme: light;
+    --page: #f4f4f1;
+    --surface-1: #fcfcfb;
+    --ink: #0b0b0b;
+    --ink-2: #52514e;
+    --muted: #898781;
+    --grid: #e1e0d9;
+    --baseline: #c3c2b7;
+    --border: rgba(11,11,11,0.10);
+    --accent: #2a78d6;
+    --accent-wash: rgba(42,120,214,0.08);
+    --good: #0ca30c;
+    --good-text: #006300;
+    --warn: #fab219;
+    --serious: #ec835a;
+    --hm-0: #e9e8e1; --hm-1: #cde2fb; --hm-2: #9ec5f4; --hm-3: #5598e7; --hm-4: #256abf; --hm-5: #104281;
+    --hm-ink-strong: #fcfcfb;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      color-scheme: dark;
+      --page: #0d0d0d;
+      --surface-1: #1a1a19;
+      --ink: #f0efec;
+      --ink-2: #c3c2b7;
+      --muted: #898781;
+      --grid: #2c2c2a;
+      --baseline: #383835;
+      --border: rgba(255,255,255,0.10);
+      --accent: #3987e5;
+      --accent-wash: rgba(57,135,229,0.12);
+      --good: #0ca30c;
+      --good-text: #0ca30c;
+      --warn: #fab219;
+      --serious: #ec835a;
+      --hm-0: #232322; --hm-1: #184f95; --hm-2: #256abf; --hm-3: #3987e5; --hm-4: #86b6ef; --hm-5: #cde2fb;
+      --hm-ink-strong: #0d0d0d;
+    }
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+  body {
+    font-family: system-ui, -apple-system, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--page); color: var(--ink); font-size: 15px; line-height: 1.6;
+    padding: 12px 14px calc(76px + env(safe-area-inset-bottom));
+    max-width: 560px; margin: 0 auto;
+  }
+  h1 { font-size: 17px; margin-bottom: 2px; }
+  h2 { font-size: 15px; margin: 22px 0 10px; color: var(--ink-2); }
+  .sub { color: var(--muted); font-size: 13px; }
+  .card {
+    background: var(--surface-1); border: 1px solid var(--border); border-radius: 14px;
+    padding: 14px; margin-bottom: 12px;
+  }
+  .row { display: flex; align-items: center; gap: 10px; }
+  .grow { flex: 1; }
+  .btn {
+    display: inline-block; border: 1px solid var(--border); background: var(--surface-1);
+    color: var(--ink); border-radius: 10px; padding: 10px 16px; font-size: 15px;
+    cursor: pointer; user-select: none; min-height: 44px; text-align: center;
+  }
+  .btn:active { background: var(--accent-wash); }
+  .btn-primary { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  .btn-primary:active { opacity: 0.85; background: var(--accent); }
+  .btn-block { display: block; width: 100%; }
+  .btn-sm { padding: 5px 10px; min-height: 34px; font-size: 13px; border-radius: 8px; }
+  .btn-danger { color: var(--serious); border-color: rgba(236,131,90,.4); }
+  .tag {
+    display: inline-block; font-size: 11px; color: var(--ink-2); background: var(--accent-wash);
+    border-radius: 6px; padding: 1px 7px; margin-right: 4px; vertical-align: 1px;
+  }
+  .chip {
+    display: inline-block; font-size: 11px; border-radius: 999px; padding: 2px 9px;
+    margin: 2px 4px 2px 0; background: var(--accent-wash); color: var(--ink-2);
+  }
+  .badge-pr {
+    display: inline-block; font-size: 11px; font-weight: 700; color: #fff;
+    background: var(--accent); border-radius: 6px; padding: 0 6px; margin-left: 6px;
+  }
+  .badge-ok {
+    display: inline-block; font-size: 11px; border-radius: 6px; padding: 0 6px;
+    background: rgba(12,163,12,.12); color: var(--good-text); margin-left: 6px;
+  }
+  .badge-fail {
+    display: inline-block; font-size: 11px; border-radius: 6px; padding: 0 6px;
+    background: rgba(236,131,90,.15); color: var(--serious); margin-left: 6px;
+  }
+  /* 底部导航 */
+  nav {
+    position: fixed; bottom: 0; left: 0; right: 0; z-index: 20;
+    background: var(--surface-1); border-top: 1px solid var(--border);
+    display: flex; justify-content: center;
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  nav .inner { display: flex; width: 100%; max-width: 560px; }
+  nav button {
+    flex: 1; background: none; border: none; color: var(--muted); font-size: 11px;
+    padding: 8px 0 7px; cursor: pointer; min-height: 50px;
+  }
+  nav button .ico { display: block; font-size: 19px; line-height: 1.2; }
+  nav button.on { color: var(--accent); font-weight: 600; }
+  /* 步进器 */
+  .step { display: flex; align-items: center; gap: 0; }
+  .step button {
+    width: 40px; height: 40px; border: 1px solid var(--border); background: var(--surface-1);
+    color: var(--ink); font-size: 18px; border-radius: 10px; cursor: pointer;
+  }
+  .step .val {
+    min-width: 64px; text-align: center; font-variant-numeric: tabular-nums;
+    font-size: 15px; padding: 0 4px;
+  }
+  .step .val small { color: var(--muted); font-size: 11px; display: block; margin-top: -3px; }
+  /* RIR 分段 */
+  .seg { display: flex; gap: 6px; flex-wrap: wrap; }
+  .seg button {
+    min-width: 44px; height: 36px; border: 1px solid var(--border); background: var(--surface-1);
+    color: var(--ink-2); border-radius: 9px; font-size: 13px; cursor: pointer;
+  }
+  .seg button.on { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+  /* 组行 */
+  .setrow {
+    border: 1px solid var(--border); border-radius: 12px; padding: 10px; margin: 8px 0;
+    background: var(--page);
+  }
+  .setrow .head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px; }
+  .setrow .n { font-weight: 700; font-size: 13px; color: var(--ink-2); }
+  .link { color: var(--accent); cursor: pointer; font-size: 13px; background: none; border: none; padding: 6px; }
+  /* 状态徽标（图标+文字，不单靠颜色） */
+  .st { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; font-weight: 600; }
+  .st-good { color: var(--good-text); }
+  .st-warn { color: var(--ink-2); }
+  .st-serious { color: var(--serious); }
+  /* 容量表 */
+  table.vol { width: 100%; border-collapse: collapse; font-size: 13px; }
+  table.vol th { text-align: left; color: var(--muted); font-weight: 400; font-size: 12px; padding: 4px 6px 4px 0; }
+  table.vol td { padding: 5px 6px 5px 0; border-top: 1px solid var(--grid); vertical-align: middle; }
+  .num { font-variant-numeric: tabular-nums; }
+  .bar-bg { background: var(--grid); border-radius: 4px; height: 10px; min-width: 60px; position: relative; }
+  .bar-fill { position: absolute; left: 0; top: 0; bottom: 0; background: var(--accent); border-radius: 4px; }
+  /* 热力图 */
+  .hm { display: grid; gap: 3px; font-size: 12px; }
+  .hm .cell {
+    border-radius: 6px; display: flex; align-items: center; justify-content: center;
+    min-height: 34px; font-variant-numeric: tabular-nums; color: var(--ink-2);
+  }
+  .hm .cell.s0 { color: var(--muted); }
+  .hm .cell.s3, .hm .cell.s4 { color: var(--hm-ink-strong); }
+  .hm .cell.s5 { color: var(--hm-ink-strong); }
+  .hm .lab { display: flex; align-items: center; color: var(--muted); font-size: 12px; }
+  /* 图表 */
+  .chart-svg { width: 100%; height: auto; display: block; }
+  .chart-svg text { font-family: inherit; fill: var(--muted); font-size: 10px; }
+  #tip {
+    position: fixed; z-index: 30; background: var(--ink); color: var(--page);
+    border-radius: 8px; padding: 5px 10px; font-size: 12px; pointer-events: none;
+    display: none; max-width: 220px; line-height: 1.5;
+  }
+  /* 列表 */
+  .list-item {
+    display: flex; justify-content: space-between; align-items: center; gap: 8px;
+    padding: 11px 2px; border-top: 1px solid var(--grid); cursor: pointer;
+  }
+  .list-item:first-of-type { border-top: none; }
+  .hero { font-size: 34px; font-weight: 700; line-height: 1.15; }
+  .hero small { font-size: 14px; font-weight: 400; color: var(--ink-2); }
+  .delta-up { color: var(--good-text); font-size: 13px; font-weight: 600; }
+  .delta-down { color: var(--serious); font-size: 13px; font-weight: 600; }
+  .mono { font-variant-numeric: tabular-nums; }
+  textarea, input[type=text], input[type=number] {
+    width: 100%; border: 1px solid var(--border); background: var(--surface-1); color: var(--ink);
+    border-radius: 10px; padding: 9px 11px; font-size: 15px; font-family: inherit;
+  }
+  textarea { min-height: 64px; resize: vertical; }
+  .switch { display: flex; justify-content: space-between; align-items: center; padding: 7px 0; }
+  .switch .t { display: flex; align-items: center; gap: 8px; }
+  .sw {
+    width: 50px; height: 30px; border-radius: 999px; background: var(--grid); position: relative;
+    cursor: pointer; transition: background .15s; border: none; flex: none;
+  }
+  .sw::after {
+    content: ""; position: absolute; top: 3px; left: 3px; width: 24px; height: 24px;
+    border-radius: 50%; background: var(--surface-1); transition: left .15s;
+    box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  }
+  .sw.on { background: var(--good); }
+  .sw.on::after { left: 23px; }
+  .empty { text-align: center; color: var(--muted); padding: 30px 0; font-size: 14px; }
+  /* 动作示意图（手绘线稿 SVG） */
+  .art {
+    color: var(--ink-2); background: var(--page); border-radius: 10px;
+    padding: 8px 6px 4px; margin-bottom: 10px;
+  }
+  .art svg { width: 100%; height: auto; display: block; }
+  .art .acc { stroke: var(--accent); stroke-width: 2; }
+  .art .dash { stroke-dasharray: 4 4; }
+  .art .equip-fill { fill: currentColor; stroke: none; }
+  .toast {
+    position: fixed; bottom: calc(90px + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%);
+    background: var(--ink); color: var(--page); border-radius: 10px; padding: 9px 18px;
+    font-size: 14px; z-index: 40; display: none;
+  }
+</style>
+</head>
+<body>
+<div id="view"></div>
+<div id="tip"></div>
+<div class="toast" id="toast"></div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+  <marker id="ah" markerWidth="7" markerHeight="7" refX="5.2" refY="3.5" orient="auto">
+    <path d="M0,0 L7,3.5 L0,7 Z" fill="var(--accent)"/>
+  </marker>
+</defs></svg>
+
+<nav><div class="inner">
+  <button data-tab="today" class="on"><span class="ico">◎</span>今日</button>
+  <button data-tab="logs"><span class="ico">☰</span>记录</button>
+  <button data-tab="volume"><span class="ico">▦</span>容量</button>
+  <button data-tab="lib"><span class="ico">📕</span>动作库</button>
+  <button data-tab="daily"><span class="ico">☀</span>日常</button>
+</div></nav>
+
+<script src="data.js?v=2026-10-27"></script>
+<script>
+"use strict";
+/* ===== 存储 ===== */
+const KEYS = { logs: "fh_logs_v1", daily: "fh_daily_v1", active: "fh_active_v1", seeded: "fh_seeded_v1" };
+const store = {
+  get(k, f) { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? f; } catch (e) { return f; } },
+  set(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
+};
+if (!store.get(KEYS.seeded, false) && !localStorage.getItem(KEYS.logs)) {
+  store.set(KEYS.logs, FIT_DATA.seed.map(s => ({ ...s })));
+  store.set(KEYS.seeded, true);
+}
+let logs = store.get(KEYS.logs, []);
+logs.forEach((l, i) => { if (!l.id) l.id = 1e9 + i; }); // 种子/旧数据补 id
+logs.sort((a, b) => a.date < b.date ? -1 : 1);
+
+/* ===== 工具 ===== */
+const $ = s => document.querySelector(s);
+const PAD = n => String(n).padStart(2, "0");
+const dstr = d => `${d.getFullYear()}-${PAD(d.getMonth() + 1)}-${PAD(d.getDate())}`;
+const todayStr = () => dstr(new Date());
+const parseD = s => { const [y, m, d] = s.split("-").map(Number); return new Date(y, m - 1, d); };
+const WEEKS = ["日", "一", "二", "三", "四", "五", "六"];
+const fmtCN = s => { const d = parseD(s); return `${d.getMonth() + 1}月${d.getDate()}日 周${WEEKS[d.getDay()]}`; };
+const fmtShort = s => { const d = parseD(s); return `${PAD(d.getMonth() + 1)}/${PAD(d.getDate())}`; };
+function weekStart(s) { // 周一为一周起点
+  const d = parseD(s); const day = (d.getDay() + 6) % 7;
+  d.setDate(d.getDate() - day);
+  return dstr(d);
+}
+const addDays = (s, n) => { const d = parseD(s); d.setDate(d.getDate() + n); return dstr(d); };
+const exById = id => FIT_DATA.exercises.find(e => e.id === id);
+const muscleLabel = id => { const m = FIT_DATA.muscles.find(x => x.id === id); return m ? m.label : id; };
+const est1rm = set => set.w * (1 + set.reps / 30);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+function toast(msg) {
+  const t = $("#toast"); t.textContent = msg; t.style.display = "block";
+  clearTimeout(t._h); t._h = setTimeout(() => t.style.display = "none", 1800);
+}
+
+/* ===== 查询 ===== */
+function sessionsOfEx(exId, endDate) {
+  return logs.filter(l => !endDate || l.date <= endDate).filter(l => l.entries.some(e => e.ex === exId));
+}
+function lastPerf(exId, beforeDate) { // 不含当日进行中的训练
+  const ss = sessionsOfEx(exId, beforeDate);
+  if (!ss.length) return null;
+  const l = ss[ss.length - 1];
+  const ent = l.entries.find(e => e.ex === exId);
+  const summary = ent.sets.map(s => `${s.w || "自重"}×${s.reps}`).join(" / ");
+  return { date: l.date, summary, top: ent.sets.reduce((a, b) => est1rm(a) >= est1rm(b) ? a : b) };
+}
+function bestPerf(exId) {
+  let best = null;
+  for (const l of sessionsOfEx(exId)) {
+    for (const e of l.entries) if (e.ex === exId) {
+      for (const s of e.sets) if (s.reps && (!best || est1rm(s) > est1rm(best))) best = { ...s, date: l.date };
+    }
+  }
+  return best;
+}
+function setsByMuscleOfWeek(wsKey) {
+  const out = {};
+  for (const m of FIT_DATA.muscles) out[m.id] = 0;
+  for (const l of logs) {
+    if (weekStart(l.date) !== wsKey) continue;
+    for (const e of l.entries) {
+      const ex = exById(e.ex);
+      if (ex && e.sets.some(s => s.reps > 0)) out[ex.primary] += e.sets.filter(s => s.reps > 0).length;
+    }
+  }
+  return out;
+}
+function totalSetsOfWeek(wsKey) {
+  const m = setsByMuscleOfWeek(wsKey);
+  return Object.values(m).reduce((a, b) => a + b, 0);
+}
+function lastNWeeks(n) {
+  const out = [];
+  let ws = weekStart(todayStr());
+  for (let i = 0; i < n; i++) { out.unshift(ws); ws = addDays(ws, -7); }
+  return out;
+}
+
+/* ===== 状态 ===== */
+let tab = "today";
+let active = store.get(KEYS.active, null);   // 进行中的训练
+let libFilter = "全部";
+let detailId = null;
+
+function saveActive() { active ? store.set(KEYS.active, active) : localStorage.removeItem(KEYS.active); }
+function saveLogs() { logs.sort((a, b) => a.date < b.date ? -1 : 1); store.set(KEYS.logs, logs); }
+
+/* ===== 图表：SVG 构建 ===== */
+function barPath(x, y, w, h, r) { // 顶端圆角、底部贴基线
+  r = Math.min(r, h / 2, w / 2);
+  return `M${x},${y + h} L${x},${y + r} Q${x},${y} ${x + r},${y} L${x + w - r},${y} Q${x + w},${y} ${x + w},${y + r} L${x + w},${y + h} Z`;
+}
+function weeklyBarsChart(weeks) { // 单系列，蓝色
+  const W = 340, H = 150, padL = 30, padB = 22, padT = 16, padR = 6;
+  const data = weeks.map(ws => ({ label: fmtShort(ws).slice(0), v: totalSetsOfWeek(ws), ws }));
+  const maxV = Math.max(4, ...data.map(d => d.v));
+  const step = Math.ceil(maxV / 4);
+  const top = step * 4;
+  const iw = W - padL - padR, ih = H - padT - padB;
+  const bw = Math.min(30, iw / data.length * 0.62);
+  let s = `<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="每周总组数">`;
+  for (let g = 0; g <= 4; g++) {
+    const y = padT + ih - ih * g / 4;
+    s += `<line x1="${padL}" y1="${y}" x2="${W - padR}" y2="${y}" stroke="var(--grid)" stroke-width="1"/>`;
+    s += `<text x="${padL - 5}" y="${y + 3}" text-anchor="end" class="mono">${g * step}</text>`;
+  }
+  data.forEach((d, i) => {
+    const cx = padL + iw * (i + 0.5) / data.length;
+    const h = d.v ? Math.max(3, ih * d.v / top) : 0;
+    if (d.v) {
+      const isLast = i === data.length - 1;
+      s += `<path d="${barPath(cx - bw / 2, padT + ih - h, bw, h, 4)}" fill="var(--accent)" data-tip="${fmtShort(d.ws)}周 · ${d.v} 组" style="cursor:pointer"/>`;
+      if (isLast || d.v === maxV)
+        s += `<text x="${cx}" y="${padT + ih - h - 4}" text-anchor="middle" class="mono">${d.v}</text>`;
+    }
+    s += `<text x="${cx}" y="${H - 7}" text-anchor="middle" class="mono">${d.label}</text>`;
+  });
+  return s + "</svg>";
+}
+function progressionChart(exId, includeDate) { // 顶级组重量/次数走势（单系列折线）
+  const pts = [];
+  for (const l of sessionsOfEx(exId, includeDate)) {
+    const ent = l.entries.find(e => e.ex === exId);
+    if (!ent) continue;
+    const top = ent.sets.reduce((a, b) => est1rm(a) >= est1rm(b) ? a : b);
+    pts.push({ date: l.date, v: top.w || top.reps, label: `${top.w ? top.w + "kg" : "自重"}×${top.reps}` });
+  }
+  if (pts.length < 2) return "";
+  const W = 340, H = 110, padL = 34, padB = 20, padT = 14, padR = 10;
+  const iw = W - padL - padR, ih = H - padT - padB;
+  const vs = pts.map(p => p.v);
+  const lo = Math.min(...vs), hi = Math.max(...vs);
+  const span = Math.max(1, hi - lo);
+  const y = v => padT + ih - (v - lo + span * 0.12) / (span * 1.24) * ih;
+  const x = i => padL + iw * (i + 0.5) / pts.length;
+  let s = `<svg class="chart-svg" viewBox="0 0 ${W} ${H}" role="img" aria-label="顶级组走势">`;
+  [lo, hi].forEach(v => {
+    s += `<line x1="${padL}" y1="${y(v)}" x2="${W - padR}" y2="${y(v)}" stroke="var(--grid)" stroke-width="1"/>`;
+    s += `<text x="${padL - 5}" y="${y(v) + 3}" text-anchor="end" class="mono">${v}</text>`;
+  });
+  s += `<polyline points="${pts.map((p, i) => `${x(i)},${y(p.v)}`).join(" ")}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linejoin="round"/>`;
+  pts.forEach((p, i) => {
+    s += `<circle cx="${x(i)}" cy="${y(p.v)}" r="4" fill="var(--accent)" stroke="var(--surface-1)" stroke-width="2" data-tip="${fmtShort(p.date)} · ${p.label}" style="cursor:pointer"/>`;
+    if (i === pts.length - 1)
+      s += `<text x="${x(i)}" y="${y(p.v) - 9}" text-anchor="middle" class="mono">${p.label}</text>`;
+  });
+  s += `<text x="${x(0)}" y="${H - 5}" text-anchor="middle" class="mono">${fmtShort(pts[0].date)}</text>`;
+  s += `<text x="${x(pts.length - 1)}" y="${H - 5}" text-anchor="middle" class="mono">${fmtShort(pts[pts.length - 1].date)}</text>`;
+  return s + "</svg>";
+}
+function hmLevel(n) {
+  if (!n) return 0;
+  if (n <= 3) return 1;
+  if (n <= 6) return 2;
+  if (n <= 10) return 3;
+  if (n <= 14) return 4;
+  return 5;
+}
+
+/* ===== 打卡导出 ===== */
+function buildExport(log) {
+  const lines = [];
+  lines.push(`【${log.title}】日期：${log.date}`);
+  if (log.startedAt) lines.push(`时间：${log.startedAt} - ${log.finishedAt || ""}`);
+  log.entries.forEach((e, i) => {
+    const ex = exById(e.ex); if (!ex) return;
+    const has = e.sets.filter(s => s.reps > 0);
+    if (!has.length) return;
+    lines.push(`${lines.filter(l => /^[0-9]+\./.test(l)).length + 1}. ${ex.name}：`);
+    e.sets.forEach((s, j) => {
+      if (!s.reps) return;
+      const w = ex.unit === "自重" ? "自重" : `${s.w}${ex.unit.startsWith("kg") ? " " + ex.unit : " kg"}`;
+      lines.push(`   组${j + 1}：${w} * ${s.reps}次 (RIR${s.rir ?? "?"})${s.fail ? " ✗未完成" : ""}`);
+    });
+  });
+  lines.push("手腕体感：");
+  lines.push("腰部体感：");
+  lines.push("身体感受：");
+  lines.push("其他（睡眠/饮食/特殊情况）：");
+  return lines.join("\n");
+}
+function copyText(txt) {
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(txt).then(() => toast("已复制，粘贴给教练即可"), () => fallbackCopy(txt));
+  } else fallbackCopy(txt);
+}
+function fallbackCopy(txt) {
+  const ta = document.createElement("textarea");
+  ta.value = txt; document.body.appendChild(ta); ta.select();
+  try { document.execCommand("copy"); toast("已复制，粘贴给教练即可"); }
+  catch (e) { prompt("长按复制：", txt); }
+  document.body.removeChild(ta);
+}
+
+/* ===== 视图：今日 ===== */
+function planOf(date) { return FIT_DATA.plans.find(p => p.date === date) || null; }
+
+function renderToday() {
+  const t = todayStr();
+  if (active) return renderLogging();
+
+  const p = planOf(t);
+  let html = `<h1>${fmtCN(t)}</h1>`;
+
+  if (p && !p.rest) {
+    html += `<div class="card">
+      <div class="row"><div class="grow"><b>${esc(p.title)}</b></div><span class="tag">${p.exercises.length} 个动作</span></div>
+      ${p.note ? `<div class="sub" style="margin:4px 0 10px">${esc(p.note)}</div>` : ""}
+      ${p.exercises.map(pe => {
+        const ex = exById(pe.ex);
+        return `<div style="padding:7px 0;border-top:1px solid var(--grid)">
+          <b style="font-size:14px">${esc(ex.name)}</b>
+          <span class="sub mono"> ${pe.sets}组 · ${pe.weight || "自重"}${ex.unit !== "自重" && pe.weight ? ex.unit + " " : ""}× ${pe.reps[0]}-${pe.reps[1]} · RIR${pe.rir}</span>
+          ${pe.note ? `<div class="sub" style="font-size:12px">${esc(pe.note)}</div>` : ""}
+        </div>`;
+      }).join("")}
+      <div style="margin-top:12px"><button class="btn btn-primary btn-block" data-a="start">开始训练</button></div>
+    </div>`;
+  } else if (p && p.rest) {
+    html += `<div class="card" style="text-align:center;padding:26px 14px">
+      <div style="font-size:30px;margin-bottom:4px">☾</div>
+      <b>今日休息</b>
+      ${p.note ? `<div class="sub" style="margin-top:4px">${esc(p.note)}</div>` : ""}
+    </div>`;
+  } else {
+    html += `<div class="card" style="text-align:center;padding:26px 14px">
+      <div style="font-size:30px;margin-bottom:4px">☉</div>
+      <b>今日无安排</b>
+      <div class="sub" style="margin-top:4px">等教练更新 data.js 推送新处方</div>
+    </div>`;
+  }
+
+  const upcoming = FIT_DATA.plans.filter(x => x.date > t).slice(0, 6);
+  if (upcoming.length) {
+    html += `<h2>近期安排</h2><div class="card">` + upcoming.map(x =>
+      `<div class="row" style="padding:7px 0;border-top:1px solid var(--grid)">
+        <span class="mono sub" style="min-width:78px">${fmtShort(x.date)} 周${WEEKS[parseD(x.date).getDay()]}</span>
+        <span class="grow" ${x.rest ? 'style="color:var(--muted)"' : ""}>${x.rest ? "☾ " : ""}${esc(x.title)}</span>
+      </div>`).join("") + `</div>`;
+  }
+  return html;
+}
+
+/* ===== 视图：训练录入 ===== */
+function startSession() {
+  const p = planOf(todayStr());
+  const now = new Date();
+  active = {
+    date: todayStr(), title: p ? p.title : "自由训练",
+    planNote: p ? p.note : "",
+    startedAt: `${PAD(now.getHours())}:${PAD(now.getMinutes())}`,
+    finishedAt: null,
+    entries: p && !p.rest ? p.exercises.map(pe => ({
+      ex: pe.ex,
+      sets: Array.from({ length: pe.sets }, () => ({ w: pe.weight ?? 0, reps: 0, rir: null, fail: false })),
+      target: { weight: pe.weight, reps: pe.reps, rir: pe.rir }
+    })) : [],
+    note: p ? p.note : ""
+  };
+  saveActive(); render();
+}
+function renderLogging() {
+  const hist = logs.filter(l => l.date < active.date);
+  let html = `<div class="row"><h1 class="grow">${esc(active.title)}</h1>
+    <button class="btn btn-sm btn-danger" data-a="cancel-log">放弃</button></div>
+    <div class="sub">开始于 ${active.startedAt} · 逐组记录，RIR = 距力竭还剩几个</div>`;
+
+  if (!active.entries.length) {
+    html += `<div class="card"><div class="empty">本次没有预置动作<br>（自由训练请联系教练加处方）</div></div>`;
+  }
+  active.entries.forEach((ent, ei) => {
+    const ex = exById(ent.ex); if (!ex) return;
+    const lp = (() => {
+      const ss = hist.filter(l => l.entries.some(e => e.ex === ent.ex));
+      if (!ss.length) return null;
+      const l = ss[ss.length - 1];
+      const e2 = l.entries.find(e => e.ex === ent.ex);
+      return { date: l.date, text: e2.sets.map(s => `${s.w || "自重"}×${s.reps}`).join(" / ") };
+    })();
+    const best = bestPerf(ent.ex);
+    html += `<div class="card">
+      <div class="row">
+        <div class="grow"><b>${esc(ex.name)}</b> <span class="tag">${ex.equip}</span></div>
+        <button class="btn btn-sm" data-a="addset" data-i="${ei}">+ 组</button>
+      </div>
+      ${lp ? `<div class="sub mono" style="margin:2px 0 4px">上次 ${fmtShort(lp.date)}：${lp.text}</div>` : `<div class="sub" style="margin:2px 0 4px">首次记录</div>`}
+      ${ent.target ? `<div class="sub" style="font-size:12px">处方：${ent.target.weight || "自重"}${ex.unit !== "自重" && ent.target.weight ? " " + ex.unit : ""} × ${ent.target.reps[0]}-${ent.target.reps[1]} · RIR${ent.target.rir}</div>` : ""}
+      ${best ? `<div class="sub mono" style="font-size:12px">历史最佳：${best.w ? best.w + ex.unit : "自重"}×${best.reps}（${fmtShort(best.date)}）</div>` : ""}
+    `;
+    ent.sets.forEach((s, si) => {
+      const bestE = best ? est1rm(best) : 0;
+      const isPR = s.reps > 0 && est1rm(s) > bestE;
+      const hitTarget = ent.target && s.reps > 0 && s.reps >= ent.target.reps[1] && (s.rir ?? 0) >= 1;
+      html += `<div class="setrow">
+        <div class="head">
+          <span class="n">组 ${si + 1}</span>
+          <span>
+            ${isPR ? '<span class="badge-pr">PR</span>' : ""}
+            ${hitTarget ? '<span class="badge-ok">达标·下次可加重</span>' : ""}
+            ${s.fail ? '<span class="badge-fail">未完成</span>' : ""}
+            <button class="link" data-a="delset" data-i="${ei}" data-j="${si}">删除</button>
+          </span>
+        </div>
+        <div class="row" style="flex-wrap:wrap;gap:8px">
+          ${ex.unit === "自重" ? "" : `<div class="step">
+            <button data-a="w-dec" data-i="${ei}" data-j="${si}">−</button>
+            <div class="val">${s.w}<small>${ex.unit}</small></div>
+            <button data-a="w-inc" data-i="${ei}" data-j="${si}">＋</button>
+          </div>`}
+          <div class="step">
+            <button data-a="r-dec" data-i="${ei}" data-j="${si}">−</button>
+            <div class="val">${s.reps || "–"}<small>次</small></div>
+            <button data-a="r-inc" data-i="${ei}" data-j="${si}">＋</button>
+          </div>
+        </div>
+        <div class="row" style="margin-top:8px">
+          <span class="sub" style="font-size:12px">RIR</span>
+          <div class="seg grow">${[0, 1, 2, 3, 4].map(r =>
+            `<button data-a="rir" data-i="${ei}" data-j="${si}" data-v="${r}" class="${s.rir === r ? "on" : ""}">${r}</button>`).join("")}</div>
+          <button class="btn btn-sm ${s.fail ? "btn-danger" : ""}" data-a="fail" data-i="${ei}" data-j="${si}">没做到</button>
+        </div>
+      </div>`;
+    });
+    html += `</div>`;
+  });
+
+  html += `<button class="btn btn-primary btn-block" data-a="finish">完成训练</button>
+           <div style="height:8px"></div>`;
+  return html;
+}
+function finishSession() {
+  const cleaned = active.entries
+    .map(e => ({ ex: e.ex, sets: e.sets.filter(s => s.reps > 0) }))
+    .filter(e => e.sets.length);
+  if (!cleaned.length) { toast("还没有记录任何一组"); return; }
+  const now = new Date();
+  const log = {
+    id: Date.now(), date: active.date, title: active.title,
+    startedAt: active.startedAt, finishedAt: `${PAD(now.getHours())}:${PAD(now.getMinutes())}`,
+    note: active.planNote || "", entries: cleaned
+  };
+  logs.push(log); saveLogs();
+  const txt = buildExport(log);
+  active = null; saveActive();
+  detailId = log.id; tab = "logs"; render();
+  copyText(txt);
+}
+
+/* ===== 视图：记录 ===== */
+function renderLogsList() {
+  let html = `<h1>训练记录</h1>`;
+  const list = [...logs].reverse();
+  if (!list.length) return html + `<div class="card"><div class="empty">还没有训练记录</div></div>`;
+  html += `<div class="card">` + list.map(l => {
+    const sets = l.entries.reduce((a, e) => a + e.sets.length, 0);
+    const ms = [...new Set(l.entries.map(e => { const ex = exById(e.ex); return ex ? muscleLabel(ex.primary) : ""; }))].filter(Boolean);
+    return `<div class="list-item" data-a="detail" data-id="${l.id}">
+      <div>
+        <b style="font-size:14px">${esc(l.title)}</b>
+        <div class="sub mono">${l.date} · ${sets}组 · ${ms.map(m => `<span class="chip">${m}</span>`).join("")}</div>
+      </div>
+      <span class="sub">›</span>
+    </div>`;
+  }).join("") + `</div>`;
+  html += `<div style="text-align:center"><button class="btn btn-sm" data-a="export-all">导出全部数据（备份）</button></div>`;
+  return html;
+}
+function renderDetail() {
+  const l = logs.find(x => x.id === detailId);
+  if (!l) { tab = "logs"; return renderLogsList(); }
+  let html = `<div class="row"><div class="grow"><h1>${esc(l.title)}</h1>
+    <div class="sub mono">${l.date}${l.startedAt ? " · " + l.startedAt + "-" + (l.finishedAt || "") : ""}</div></div>
+    <button class="btn btn-sm" data-a="back">‹ 返回</button></div>`;
+  if (l.note) html += `<div class="sub" style="margin:4px 0">${esc(l.note)}</div>`;
+  l.entries.forEach(e => {
+    const ex = exById(e.ex); if (!ex) return;
+    // 上次同动作
+    const prev = logs.filter(x => x.date < l.date && x.entries.some(y => y.ex === e.ex)).pop();
+    const prevTxt = prev ? (() => {
+      const pe = prev.entries.find(y => y.ex === e.ex);
+      return pe.sets.map(s => `${s.w || "自重"}×${s.reps}`).join(" / ");
+    })() : null;
+    const best = bestPerf(e.ex);
+    html += `<div class="card">
+      <div class="row"><div class="grow"><b>${esc(ex.name)}</b> <span class="tag">${ex.equip}</span></div></div>
+      ${prevTxt ? `<div class="sub mono" style="margin:2px 0">上次（${fmtShort(prev.date)}）：${prevTxt}</div>` : ""}
+      ${e.sets.map((s, j) => {
+        const isBest = best && s.reps > 0 && est1rm(s) >= est1rm(best) && best.date === l.date;
+        return `<div class="row mono" style="padding:5px 0;border-top:1px solid var(--grid);font-size:14px">
+          <span class="sub" style="min-width:36px">组${j + 1}</span>
+          <span class="grow">${ex.unit === "自重" ? "自重" : s.w + " " + ex.unit} × ${s.reps} 次</span>
+          <span class="sub">RIR${s.rir ?? "?"}</span>
+          ${isBest ? '<span class="badge-pr">最佳</span>' : ""}
+          ${s.fail ? '<span class="badge-fail">未完成</span>' : ""}
+        </div>`;
+      }).join("")}
+      <div style="margin-top:8px">${progressionChart(e.ex, l.date)}</div>
+    </div>`;
+  });
+  html += `<button class="btn btn-block" data-a="copy-log" data-id="${l.id}">复制打卡文本</button>
+    <div style="height:8px"></div>
+    <button class="btn btn-sm btn-danger btn-block" data-a="del-session" data-id="${l.id}">删除这条记录</button>`;
+  return html;
+}
+
+/* ===== 视图：容量 ===== */
+function renderVolume() {
+  const thisWs = weekStart(todayStr());
+  const cur = setsByMuscleOfWeek(thisWs);
+  const curTotal = Object.values(cur).reduce((a, b) => a + b, 0);
+  const lastWs = addDays(thisWs, -7);
+  const lastTotal = totalSetsOfWeek(lastWs);
+
+  let html = `<h1>容量总览</h1>
+    <div class="card">
+      <div class="row">
+        <div class="grow">
+          <div class="hero">${curTotal}<small> 组</small></div>
+          <div class="sub">本周总组数（按主肌群统计）</div>
+        </div>
+        <div>${lastTotal ? (curTotal >= lastTotal
+          ? `<span class="delta-up">▲ 较上周 +${curTotal - lastTotal}</span>`
+          : `<span class="delta-down">▼ 较上周 ${curTotal - lastTotal}</span>`) : `<span class="sub">上周无数据</span>`}</div>
+      </div>
+    </div>`;
+
+  // 每周总组数柱状图
+  html += `<h2>每周总组数（近8周）</h2><div class="card">${weeklyBarsChart(lastNWeeks(8))}</div>`;
+
+  // 各肌群本周容量 + 参考区间
+  html += `<h2>本周各肌群</h2><div class="card"><table class="vol">
+    <tr><th>肌群</th><th>组数</th><th style="width:34%">容量</th><th>参考</th><th>状态</th></tr>`;
+  const maxBar = Math.max(...FIT_DATA.muscles.map(m => Math.max(cur[m.id], m.range[1])));
+  for (const m of FIT_DATA.muscles) {
+    const v = cur[m.id];
+    let st, cls;
+    if (v === 0) { st = "· 未练"; cls = "st-warn"; }
+    else if (v < m.range[0]) { st = "! 不足"; cls = "st-warn"; }
+    else if (v > m.range[1]) { st = "↑ 偏高"; cls = "st-serious"; }
+    else { st = "✓ 达标"; cls = "st-good"; }
+    html += `<tr>
+      <td><b>${m.label}</b></td>
+      <td class="num">${v}</td>
+      <td><div class="bar-bg"><div class="bar-fill" style="width:${Math.round(v / maxBar * 100)}%"></div></div></td>
+      <td class="num sub">${m.range[0]}-${m.range[1]}</td>
+      <td><span class="st ${cls}">${st}</span></td>
+    </tr>`;
+  }
+  html += `</table><div class="sub" style="font-size:12px;margin-top:8px">参考区间为每周有效组数（ hypertrophy 维持~增长区间的通用指引），由教练按阶段调整</div></div>`;
+
+  // 近5周 肌群×周 热力图
+  const weeks5 = lastNWeeks(5);
+  html += `<h2>近5周肌群热力</h2><div class="card">
+    <div class="hm" style="grid-template-columns:44px repeat(${weeks5.length},1fr)">
+      <div class="lab"></div>
+      ${weeks5.map(ws => `<div class="lab" style="justify-content:center">${fmtShort(ws)}</div>`).join("")}
+      ${FIT_DATA.muscles.map(m => `
+        <div class="lab">${m.label}</div>
+        ${weeks5.map(ws => {
+          const v = setsByMuscleOfWeek(ws)[m.id];
+          return `<div class="cell s${hmLevel(v)} hmcell" data-tip="${m.label} · ${fmtShort(ws)}周：${v} 组">${v || ""}</div>`;
+        }).join("")}`).join("")}
+    </div>
+    <div class="sub" style="font-size:12px;margin-top:8px">颜色越深容量越高 · 点按看数值</div>
+  </div>`;
+  return html;
+}
+
+/* ===== 动作示意图（手绘线稿，侧视/正视，箭头=发力方向） ===== */
+const ART_W = 220, ART_H = 130;
+const artWrap = inner => `<svg viewBox="0 0 ${ART_W} ${ART_H}" role="img" aria-hidden="true"><g fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">${inner}</g></svg>`;
+const P = (x1, y1, x2, y2, cls) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}"${cls ? ` class="${cls}"` : ""}/>`;
+const C = (x, y, r) => `<circle cx="${x}" cy="${y}" r="${r}"/>`;
+const POLY = pts => `<polyline points="${pts}"/>`;
+const RECT = (x, y, w, h) => `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="2"/>`;
+const ARROW = (x1, y1, x2, y2) => `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" class="acc" marker-end="url(#ah)"/>`;
+const DARC = d => `<path d="${d}" class="acc" marker-end="url(#ah)"/>`;
+
+const EX_ART = {
+  /* 卧推类：仰卧/上斜 + 器械差异 */
+  flat_bench: artWrap(
+    P(38, 72, 128, 72) + P(48, 72, 48, 100) + P(118, 72, 118, 100) +   // 卧推凳
+    C(52, 65, 7) + P(60, 69, 112, 70) +                                  // 头 + 躯干
+    POLY("112,70 140,82 146,104") + POLY("108,70 134,84 140,104") +     // 双腿
+    POLY("78,69 80,52 78,38") +                                          // 手臂
+    C(78, 34, 8) + C(78, 34, 2.5) +                                      // 杠铃（端视）
+    ARROW(102, 26, 102, 54)),
+  smith_incline: artWrap(
+    P(30, 84, 130, 52) + P(38, 84, 38, 102) + P(122, 56, 122, 102) +    // 上斜凳
+    C(40, 76, 7) + P(50, 79, 115, 58) +
+    POLY("115,58 142,72 148,102") + POLY("111,60 138,74 144,102") +
+    POLY("100,62 98,46 96,32") +
+    C(96, 28, 8) + C(96, 28, 2.5) +
+    P(88, 100, 148, 68, "dash") +                                         // 史密斯导轨
+    ARROW(114, 22, 114, 50)),
+  db_incline_press: artWrap(
+    P(30, 84, 130, 52) + P(38, 84, 38, 102) + P(122, 56, 122, 102) +
+    C(40, 76, 7) + P(50, 79, 115, 58) +
+    POLY("115,58 142,72 148,102") + POLY("111,60 138,74 144,102") +
+    POLY("100,62 98,46 96,32") +
+    RECT(88, 22, 16, 10) +                                                // 哑铃
+    ARROW(114, 22, 114, 50)),
+  incline_flye: artWrap(
+    P(30, 84, 130, 52) + P(38, 84, 38, 102) + P(122, 56, 122, 102) +
+    C(40, 76, 7) + P(50, 79, 115, 58) +
+    POLY("115,58 142,72 148,102") +
+    `<path d="M100,62 Q82,58 70,46"/>` +                                  // 张开的手臂
+    RECT(62, 40, 14, 9) +
+    DARC("M108,40 Q84,26 74,32")),
+  pec_deck: artWrap(
+    P(70, 80, 110, 80) + P(78, 80, 78, 104) + P(102, 80, 102, 104) +     // 座椅
+    P(58, 46, 58, 80) +                                                   // 靠背
+    C(66, 40, 7) + P(68, 47, 72, 80) +
+    POLY("72,80 92,90 96,104") +
+    POLY("70,54 84,56 98,56") + C(103, 56, 4) +                          // 手臂+把手
+    P(126, 28, 126, 96) + P(118, 40, 126, 40) +                          // 机架
+    ARROW(120, 68, 106, 66)),
+  reverse_pec_deck: artWrap(
+    P(70, 80, 110, 80) + P(78, 80, 78, 104) + P(102, 80, 102, 104) +
+    P(122, 46, 122, 80) +                                                 // 靠背（胸前）
+    C(114, 40, 7) + P(112, 47, 108, 80) +
+    POLY("108,80 88,90 84,104") +
+    POLY("112,54 98,56 84,56") + C(79, 56, 4) +
+    P(52, 28, 52, 96) + P(52, 40, 60, 40) +
+    ARROW(64, 68, 78, 66)),
+  dips: artWrap(
+    P(70, 40, 120, 40) + P(74, 40, 74, 104) + P(116, 40, 116, 104) +     // 双杠
+    C(96, 56, 7) + P(96, 63, 98, 90) +
+    POLY("94,62 84,44") + POLY("98,62 108,44") +                         // 支撑手臂
+    POLY("98,90 112,98 108,112") +                                       // 屈腿
+    ARROW(134, 58, 134, 84)),
+  /* 拉类 */
+  lat_pulldown: artWrap(
+    P(110, 18, 110, 100) + C(110, 18, 5) +                               // 滑轮立柱
+    P(60, 86, 105, 86) + P(70, 86, 70, 104) + P(100, 86, 100, 104) +     // 座椅
+    C(74, 56, 7) + P(76, 63, 82, 86) +
+    POLY("82,86 104,92 108,106") +
+    POLY("78,64 88,44 100,26") +                                          // 举臂
+    P(92, 24, 128, 24) + P(102, 24, 108, 20) +                           // 杆 + 绳
+    RECT(104, 28, 12, 26) +                                               // 配重片
+    ARROW(138, 22, 138, 48)),
+  pullup: artWrap(
+    P(60, 22, 160, 22) + P(60, 22, 60, 14) + P(160, 22, 160, 14) +       // 单杠
+    POLY("100,22 96,44 94,54") +                                          // 手臂
+    C(98, 60, 7) + P(96, 67, 100, 92) +
+    POLY("100,92 116,100 112,116") +
+    ARROW(134, 46, 134, 28)),
+  seated_cable_row: artWrap(
+    P(55, 84, 100, 84) + P(62, 84, 62, 104) + P(96, 84, 96, 104) +       // 座椅
+    C(64, 54, 7) + P(66, 61, 74, 84) +
+    POLY("74,84 50,92 36,98") +                                           // 前伸双腿
+    P(30, 78, 30, 100) +                                                  // 踏板
+    POLY("68,62 56,66 44,66") + C(22, 66, 5) +                           // 手臂+滑轮
+    P(38, 66, 27, 66) + RECT(12, 72, 10, 24) +
+    ARROW(50, 54, 64, 56)),
+  db_row: artWrap(
+    P(40, 58, 100, 58) + P(48, 58, 48, 104) + P(92, 58, 92, 104) +       // 凳
+    POLY("56,104 58,84 70,66") +                                          // 支撑腿
+    P(70, 66, 108, 58) + C(118, 54, 7) +                                  // 水平躯干 + 头
+    POLY("108,58 95,58") +                                                // 支撑手
+    POLY("108,58 112,70 114,84") + RECT(108, 84, 12, 9) +                // 划船手 + 哑铃
+    ARROW(130, 86, 130, 68)),
+  straight_arm_pulldown: artWrap(
+    P(158, 26, 158, 104) + C(152, 26, 5) +                                // 高位滑轮
+    C(96, 40, 7) + P(98, 47, 104, 88) +
+    POLY("104,88 98,104") + POLY("104,88 112,104") +
+    POLY("100,52 118,62 136,72") +                                        // 近伸直手臂
+    P(136, 72, 152, 28) +                                                 // 绳索
+    ARROW(126, 40, 138, 66)),
+  /* 肩臂类 */
+  db_shoulder_press: artWrap(
+    P(58, 86, 98, 86) + P(66, 86, 66, 104) + P(92, 86, 92, 104) +        // 座椅
+    P(56, 40, 62, 86) +                                                   // 靠背
+    C(66, 32, 7) + P(68, 39, 74, 86) +
+    POLY("74,86 94,94 98,106") +
+    POLY("70,44 82,36 84,24") + RECT(76, 14, 16, 10) +                   // 举臂 + 哑铃
+    ARROW(100, 22, 100, 6)),
+  lateral_raise: artWrap(
+    C(110, 34, 7) + P(110, 41, 110, 84) +                                 // 正视：头+躯干
+    POLY("110,84 98,106") + POLY("110,84 122,106") +                      // 双腿
+    P(98, 48, 70, 46) + P(122, 48, 150, 46) +                             // 平举双臂
+    RECT(60, 41, 12, 9) + RECT(148, 41, 12, 9) +                          // 哑铃×2
+    ARROW(66, 34, 66, 22) + ARROW(154, 34, 154, 22)),
+  pushdown: artWrap(
+    P(128, 22, 128, 104) + C(122, 22, 5) +
+    C(86, 38, 7) + P(88, 45, 94, 86) +
+    POLY("94,86 88,104") + POLY("94,86 102,104") +
+    POLY("90,50 98,62 108,70") +
+    P(108, 70, 122, 24) +
+    ARROW(116, 56, 114, 78)),
+  db_curl: artWrap(
+    C(100, 36, 7) + P(102, 43, 108, 84) +
+    POLY("108,84 102,104") + POLY("108,84 116,104") +
+    POLY("104,48 106,68 102,54") + RECT(96, 44, 12, 9) +                  // 上臂固定，前臂弯起
+    P(108, 68, 112, 88, "dash") +                                         // 起始位置（下垂）
+    DARC("M124,86 Q132,70 124,52")),
+  /* 腿类 */
+  back_squat: artWrap(
+    C(108, 34, 7) + P(106, 41, 100, 76) +
+    C(102, 48, 9) + C(102, 48, 3) +                                       // 背上杠铃
+    POLY("100,76 122,92 126,108") + POLY("100,76 118,96 122,110") +
+    ARROW(84, 56, 84, 84)),
+  hack_squat: artWrap(
+    P(44, 16, 140, 104) + P(56, 10, 148, 100) +                           // 斜置滑轨（靠背）
+    C(64, 34, 7) + P(68, 40, 100, 76) +
+    POLY("100,76 128,66 138,86") +                                        // 蹬伸腿
+    P(132, 78, 150, 92) +                                                 // 脚踏板
+    ARROW(150, 34, 128, 66)),
+  leg_press: artWrap(
+    C(48, 44, 7) + P(54, 50, 86, 72) +                                    // 后仰躯干
+    POLY("86,72 118,58 138,70") +                                         // 蹬伸腿
+    P(132, 56, 146, 100) +                                                // 踏板
+    POLY("60,66 54,72") + P(40, 60, 44, 50) +                             // 座椅轮廓
+    ARROW(124, 44, 100, 62)),
+  leg_curl: artWrap(
+    P(50, 64, 130, 64) + P(58, 64, 58, 100) + P(122, 64, 122, 100) +     // 俯卧凳
+    C(54, 57, 7) + P(62, 60, 120, 62) +
+    POLY("120,62 146,64 172,66") +                                        // 直腿（参照）
+    POLY("120,62 144,58 140,34") +                                        // 弯起腿
+    DARC("M154,58 Q158,44 150,34")),
+  leg_ext: artWrap(
+    P(60, 74, 100, 74) + P(68, 74, 68, 104) + P(96, 74, 96, 104) +
+    P(58, 40, 62, 74) +
+    C(64, 32, 7) + P(66, 39, 74, 74) +
+    POLY("74,74 108,78 112,46") +                                         // 伸直小腿
+    C(118, 76, 5) +
+    DARC("M126,70 Q130,56 122,46")),
+  bulgarian_split: artWrap(
+    P(140, 72, 180, 72) + P(148, 72, 148, 104) + P(172, 72, 172, 104) +  // 后方凳
+    POLY("56,104 74,78 96,66") +                                          // 前腿
+    P(96, 66, 104, 42) + C(110, 34, 7) +                                  // 躯干+头
+    POLY("96,66 130,76 146,70") +                                         // 后腿搭凳
+    POLY("104,44 104,56") + RECT(96, 54, 14, 9) +                        // 持铃手
+    ARROW(88, 56, 84, 84)),
+  db_goblet: artWrap(
+    C(108, 30, 7) + P(106, 37, 104, 78) +
+    POLY("104,78 96,104") + POLY("104,78 114,104") +
+    POLY("106,42 114,56 106,58") + POLY("106,42 98,56 106,58") +         // 抱铃双臂
+    RECT(99, 54, 14, 11) +
+    ARROW(88, 62, 90, 88)),
+  calf_raise: artWrap(
+    C(104, 34, 7) + P(106, 41, 110, 80) +
+    POLY("110,80 108,98 104,108") +                                       // 提踵腿（脚尖支撑）
+    P(104, 108, 124, 108) +                                               // 地面
+    POLY("112,48 118,56") + RECT(114, 52, 12, 9) +                       // 持铃
+    ARROW(134, 100, 134, 86)),
+  lying_leg_raise: artWrap(
+    P(50, 66, 140, 66) + P(58, 66, 58, 100) + P(132, 66, 132, 100) +
+    C(56, 59, 7) + P(64, 62, 130, 64) +
+    POLY("130,64 136,22") +                                               // 举起的双腿
+    P(136, 22, 130, 26, "dash") +
+    ARROW(148, 40, 148, 24)),
+  vacuum: artWrap(
+    C(104, 32, 7) + P(106, 39, 108, 84) +
+    POLY("108,84 102,104") + POLY("108,84 116,104") +
+    `<path d="M108,52 Q112,60 108,68" class="dash"/>` +                   // 腹部轮廓
+    ARROW(132, 58, 118, 60))
+};
+
+/* ===== 视图：动作库 ===== */
+function renderLib() {
+  const eqs = ["全部", ...new Set(FIT_DATA.exercises.map(e => e.equip))];
+  const list = FIT_DATA.exercises.filter(e => libFilter === "全部" || e.equip === libFilter);
+  let html = `<h1>动作库</h1>
+    <div class="row" style="flex-wrap:wrap;gap:0">${eqs.map(q =>
+      `<button class="btn btn-sm" style="margin:0 6px 6px 0;${q === libFilter ? "border-color:var(--accent);color:var(--accent);font-weight:600" : ""}" data-a="lib-filter" data-q="${q}">${q}</button>`).join("")}</div>`;
+  html += list.map(ex => `<div class="card">
+    ${EX_ART[ex.id] ? `<div class="art">${EX_ART[ex.id]}</div>` : ""}
+    <div class="row">
+      <div class="grow"><b>${esc(ex.name)}</b></div>
+      <span class="tag">${ex.equip}</span><span class="tag">主：${muscleLabel(ex.primary)}</span>
+    </div>
+    ${ex.secondary.length ? `<div class="sub" style="margin:2px 0 6px">辅助：${ex.secondary.join("、")}</div>` : '<div style="height:6px"></div>'}
+    ${ex.cues.map(c => `<div style="font-size:13px;color:var(--ink-2);padding:2px 0 2px 12px;position:relative">
+      <span style="position:absolute;left:0;color:var(--accent)">·</span>${esc(c)}</div>`).join("")}
+  </div>`).join("");
+  return html;
+}
+
+/* ===== 视图：日常 ===== */
+function renderDaily() {
+  const t = todayStr();
+  const d = store.get(KEYS.daily, {})[t] || {};
+  const hist = Object.entries(store.get(KEYS.daily, {})).filter(([k]) => k < t).sort((a, b) => b[0] < a[0] ? -1 : 1).slice(0, 14);
+  let html = `<h1>日常记录</h1><div class="card">
+    <div class="sub" style="margin-bottom:6px">${fmtCN(t)}</div>
+    <div class="switch"><div class="t">体重 <span class="sub">kg</span></div>
+      <input type="number" id="d-weight" step="0.1" inputmode="decimal" style="width:110px" value="${d.weight ?? ""}" placeholder="–"></div>
+    <div class="switch"><div class="t">睡眠 <span class="sub">小时</span></div>
+      <div class="step"><button data-a="dl-dec" data-f="sleep">−</button><div class="val" style="min-width:52px">${d.sleep ?? "–"}</div><button data-a="dl-inc" data-f="sleep">＋</button></div></div>
+    <div class="switch"><div class="t">饮水 <span class="sub">L</span></div>
+      <div class="step"><button data-a="dl-dec" data-f="water">−</button><div class="val" style="min-width:52px">${d.water ?? "–"}</div><button data-a="dl-inc" data-f="water">＋</button></div></div>
+    <div class="switch"><div class="t">蛋白粉</div><button class="sw ${d.whey ? "on" : ""}" data-a="dl-toggle" data-f="whey" aria-label="蛋白粉"></button></div>
+    <div class="switch"><div class="t">肌酸 5g</div><button class="sw ${d.creatine ? "on" : ""}" data-a="dl-toggle" data-f="creatine" aria-label="肌酸"></button></div>
+    <div style="margin-top:6px"><textarea id="d-note" placeholder="身体感受/咳嗽/手腕/腰/特殊情况…">${esc(d.note || "")}</textarea></div>
+    <button class="btn btn-primary btn-block" style="margin-top:10px" data-a="dl-save">保存今日</button>
+  </div>`;
+  if (hist.length) {
+    html += `<h2>近14天</h2><div class="card">` + hist.map(([k, v]) =>
+      `<div class="row mono" style="padding:7px 0;border-top:1px solid var(--grid);font-size:13px">
+        <span class="sub" style="min-width:74px">${fmtShort(k)}</span>
+        <span style="min-width:52px">${v.weight ? v.weight + "kg" : "–"}</span>
+        <span style="min-width:44px">${v.sleep ? v.sleep + "h" : "–"}</span>
+        <span style="min-width:38px">${v.water ? v.water + "L" : "–"}</span>
+        <span class="grow">${v.whey ? "🥛" : ""}${v.creatine ? " ⚡" : ""}</span>
+      </div>${v.note ? `<div class="sub" style="font-size:12px;padding:0 0 6px 74px;margin-top:-6px">${esc(v.note)}</div>` : ""}`).join("") + `</div>`;
+  }
+  return html;
+}
+function getDailyToday() {
+  const all = store.get(KEYS.daily, {});
+  if (!all[todayStr()]) all[todayStr()] = {};
+  return all;
+}
+function dailyStep(f, delta, min, max, stepv) {
+  const all = getDailyToday();
+  const cur = all[todayStr()];
+  cur[f] = Math.round(Math.min(max, Math.max(min, ((cur[f] ?? (min + stepv)) + delta) / stepv)) * stepv * 10) / 10;
+  store.set(KEYS.daily, all); render();
+}
+
+/* ===== 渲染入口 ===== */
+function render() {
+  const v = $("#view");
+  if (tab === "today") v.innerHTML = renderToday();
+  else if (tab === "logs") v.innerHTML = detailId ? renderDetail() : renderLogsList();
+  else if (tab === "volume") v.innerHTML = renderVolume();
+  else if (tab === "lib") v.innerHTML = renderLib();
+  else if (tab === "daily") v.innerHTML = renderDaily();
+  document.querySelectorAll("nav button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab));
+  window.scrollTo(0, 0);
+}
+
+/* ===== 事件 ===== */
+document.querySelectorAll("nav button").forEach(b =>
+  b.addEventListener("click", () => { tab = b.dataset.tab; detailId = null; render(); }));
+
+$("#view").addEventListener("click", ev => {
+  const el = ev.target.closest("[data-a]");
+  if (!el) return;
+  const a = el.dataset.a;
+  const i = el.dataset.i !== undefined ? +el.dataset.i : null;
+  const j = el.dataset.j !== undefined ? +el.dataset.j : null;
+
+  if (a === "start") { startSession(); return; }
+  if (a === "cancel-log") {
+    if (confirm("放弃本次训练记录？")) { active = null; saveActive(); render(); }
+    return;
+  }
+  if (a === "addset") {
+    const ent = active.entries[i];
+    const last = ent.sets[ent.sets.length - 1];
+    ent.sets.push({ w: last ? last.w : (ent.target ? ent.target.weight : 0), reps: 0, rir: null, fail: false });
+    saveActive(); render(); return;
+  }
+  if (a === "delset") { active.entries[i].sets.splice(j, 1); saveActive(); render(); return; }
+  if (a === "w-inc" || a === "w-dec") {
+    const s = active.entries[i].sets[j];
+    const stepW = 2.5;
+    s.w = Math.max(0, Math.round((s.w + (a === "w-inc" ? stepW : -stepW)) * 10) / 10);
+    saveActive(); render(); return;
+  }
+  if (a === "r-inc" || a === "r-dec") {
+    const s = active.entries[i].sets[j];
+    s.reps = Math.max(0, (s.reps || 0) + (a === "r-inc" ? 1 : -1));
+    saveActive(); render(); return;
+  }
+  if (a === "rir") { active.entries[i].sets[j].rir = +el.dataset.v; saveActive(); render(); return; }
+  if (a === "fail") { const s = active.entries[i].sets[j]; s.fail = !s.fail; saveActive(); render(); return; }
+  if (a === "finish") { finishSession(); return; }
+
+  if (a === "detail") { detailId = +el.dataset.id; render(); return; }
+  if (a === "back") { detailId = null; render(); return; }
+  if (a === "copy-log") { copyText(buildExport(logs.find(x => x.id === +el.dataset.id))); return; }
+  if (a === "del-session") {
+    if (confirm("删除这条训练记录？不可恢复。")) {
+      logs = logs.filter(x => x.id !== +el.dataset.id); saveLogs(); detailId = null; render();
+    }
+    return;
+  }
+  if (a === "export-all") {
+    copyText(JSON.stringify({ logs, daily: store.get(KEYS.daily, {}) }));
+    return;
+  }
+  if (a === "lib-filter") { libFilter = el.dataset.q; render(); return; }
+
+  if (a === "dl-inc" || a === "dl-dec") {
+    const f = el.dataset.f;
+    const d = a === "dl-inc" ? 1 : -1;
+    if (f === "sleep") dailyStep(f, d, 0, 14, 0.5);
+    if (f === "water") dailyStep(f, d, 0, 6, 0.25);
+    return;
+  }
+  if (a === "dl-toggle") {
+    const all = getDailyToday();
+    const cur = all[todayStr()];
+    cur[el.dataset.f] = !cur[el.dataset.f];
+    store.set(KEYS.daily, all); render(); return;
+  }
+  if (a === "dl-save") {
+    const all = getDailyToday();
+    const cur = all[todayStr()];
+    const w = parseFloat($("#d-weight").value);
+    cur.weight = isNaN(w) ? null : w;
+    cur.note = $("#d-note").value.trim();
+    store.set(KEYS.daily, all); toast("已保存"); render(); return;
+  }
+});
+
+/* 图表提示（点按） */
+$("#view").addEventListener("click", ev => {
+  const el = ev.target.closest("[data-tip]");
+  const tip = $("#tip");
+  if (!el) { tip.style.display = "none"; return; }
+  tip.textContent = el.dataset.tip;
+  tip.style.display = "block";
+  const r = el.getBoundingClientRect();
+  const tw = tip.offsetWidth;
+  tip.style.left = Math.max(8, Math.min(window.innerWidth - tw - 8, r.left + r.width / 2 - tw / 2)) + "px";
+  tip.style.top = Math.max(8, r.top - 40) + "px";
+});
+
+render();
+</script>
+</body>
+</html>
