@@ -236,7 +236,7 @@
 <script>
 "use strict";
 /* ===== 存储 ===== */
-const KEYS = { logs: "fh_logs_v1", daily: "fh_daily_v1", active: "fh_active_v1", seeded: "fh_seeded_v1" };
+const KEYS = { logs: "fh_logs_v1", daily: "fh_daily_v1", active: "fh_active_v1", seeded: "fh_seeded_v1", token: "fh_ghtoken_v1" };
 const store = {
   get(k, f) { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? f; } catch (e) { return f; } },
   set(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
@@ -587,6 +587,74 @@ function renderLogging() {
            <div style="height:8px"></div>`;
   return html;
 }
+/* ===== 云端自动同步 (GitHub REST API) ===== */
+async function syncLogToGitHub(log) {
+  const token = localStorage.getItem(KEYS.token);
+  if (!token) return;
+  toast("正在自动同步到 GitHub ☁️...");
+  try {
+    const repo = "zx-Altman/fitness-coaching-hub";
+    const path = `logs/${log.date}.json`;
+    const url = `https://api.github.com/repos/${repo}/contents/${path}`;
+    const headers = {
+      "Authorization": `token ${token.trim()}`,
+      "Accept": "application/vnd.github.v3+json",
+      "Content-Type": "application/json"
+    };
+
+    let sha = null;
+    try {
+      const checkRes = await fetch(url, { headers });
+      if (checkRes.ok) {
+        const checkData = await checkRes.json();
+        sha = checkData.sha;
+      }
+    } catch (e) {}
+
+    const jsonStr = JSON.stringify(log, null, 2);
+    const utf8Bytes = new TextEncoder().encode(jsonStr);
+    let binary = "";
+    utf8Bytes.forEach(b => binary += String.fromCharCode(b));
+    const b64Content = btoa(binary);
+
+    const body = {
+      message: `chore(log): auto-sync ${log.date} workout`,
+      content: b64Content
+    };
+    if (sha) body.sha = sha;
+
+    const putRes = await fetch(url, {
+      method: "PUT",
+      headers,
+      body: JSON.stringify(body)
+    });
+
+    if (putRes.ok) {
+      toast("已完成训练，数据已自动同步至 GitHub ☁️");
+    } else {
+      const errJson = await putRes.json().catch(() => ({}));
+      toast(`同步失败: ${errJson.message || putRes.status}`);
+    }
+  } catch (err) {
+    console.error("GitHub Sync error:", err);
+    toast("网络异常，已保存在本地");
+  }
+}
+
+async function testGitHubToken(token) {
+  if (!token) { toast("请输入 GitHub Token"); return; }
+  toast("正在验证 Token...");
+  try {
+    const res = await fetch("https://api.github.com/repos/zx-Altman/fitness-coaching-hub", {
+      headers: { "Authorization": `token ${token.trim()}`, "Accept": "application/vnd.github.v3+json" }
+    });
+    if (res.ok) toast("✅ Token 验证成功，具备仓库权限！");
+    else toast("❌ Token 无效或无权访问");
+  } catch (e) {
+    toast("网络请求失败");
+  }
+}
+
 function finishSession() {
   const cleaned = active.entries
     .map(e => ({ ex: e.ex, sets: e.sets.filter(s => s.reps > 0) }))
@@ -603,6 +671,7 @@ function finishSession() {
   active = null; saveActive();
   detailId = log.id; tab = "logs"; render();
   copyText(txt);
+  syncLogToGitHub(log);
 }
 
 /* ===== 视图：记录 ===== */
@@ -964,6 +1033,19 @@ function renderDaily() {
         <span class="grow">${v.whey ? "🥛" : ""}${v.creatine ? " ⚡" : ""}</span>
       </div>${v.note ? `<div class="sub" style="font-size:12px;padding:0 0 6px 74px;margin-top:-6px">${esc(v.note)}</div>` : ""}`).join("") + `</div>`;
   }
+
+  const tok = localStorage.getItem(KEYS.token) || "";
+  html += `<h2>云端自动同步</h2><div class="card">
+    <div class="sub" style="margin-bottom:8px">配置 GitHub Token 后，点击「完成训练」会自动将打卡数据静默同步至云端仓库</div>
+    <div class="switch">
+      <div class="t">GitHub Token</div>
+      <input type="password" id="gh-token-input" style="width:160px" value="${esc(tok)}" placeholder="ghp_xxxxxxxxx">
+    </div>
+    <div class="row" style="margin-top:10px;gap:8px">
+      <button class="btn btn-sm grow" data-a="save-token">保存 Token</button>
+      <button class="btn btn-sm" data-a="test-token">测试连接</button>
+    </div>
+  </div>`;
   return html;
 }
 function getDailyToday() {
@@ -1065,7 +1147,18 @@ $("#view").addEventListener("click", ev => {
     const w = parseFloat($("#d-weight").value);
     cur.weight = isNaN(w) ? null : w;
     cur.note = $("#d-note").value.trim();
-    store.set(KEYS.daily, all); toast("已保存"); render(); return;
+    store.set(KEYS.daily, all); toast("已保存"); render(true); return;
+  }
+  if (a === "save-token") {
+    const tok = $("#gh-token-input").value.trim();
+    if (!tok) localStorage.removeItem(KEYS.token);
+    else localStorage.setItem(KEYS.token, tok);
+    toast(tok ? "Token 已保存" : "Token 已清除");
+    render(true); return;
+  }
+  if (a === "test-token") {
+    const tok = $("#gh-token-input").value.trim();
+    testGitHubToken(tok); return;
   }
 });
 
