@@ -9,10 +9,12 @@
 - `index.html` — 单文件应用（无依赖，双击即可本地打开）
 - `data.js` — 数据文件（动作库 / 每周训练处方 / 种子历史），由教练 Claude 维护
 
-## 手机使用
+## PWA 与手机使用
 
-1. 用 iPhone Safari 打开 GitHub Pages 地址
-2. 分享 → 添加到主屏幕（全屏图标，像原生 App）
+1. 用 iPhone Safari / Android Chrome 打开 GitHub Pages 地址：`https://zx-altman.github.io/fitness-coaching-hub/`
+2. **iPhone Safari**：点击底部「分享」按钮 →「添加到主屏幕」（自动识别杠铃图标，以原生独立 App 模式运行，无 Safari 顶底工具栏）。
+3. **Android Chrome**：点击右上角菜单 →「安装应用」或「添加到主屏幕」。
+4. **离线缓存**：内置 Service Worker，在健身房无信号/信号弱时依然能秒开应用并进行组间打卡与历史查询。
 
 ## 与教练的闭环
 
