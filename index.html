@@ -492,11 +492,15 @@ function startSession() {
     planNote: p ? p.note : "",
     startedAt: `${PAD(now.getHours())}:${PAD(now.getMinutes())}`,
     finishedAt: null,
-    entries: p && !p.rest ? p.exercises.map(pe => ({
-      ex: pe.ex,
-      sets: Array.from({ length: pe.sets }, () => ({ w: pe.weight ?? 0, reps: 0, rir: null, fail: false })),
-      target: { weight: pe.weight, reps: pe.reps, rir: pe.rir }
-    })) : [],
+    entries: p && !p.rest ? p.exercises.map(pe => {
+      const defaultReps = pe.reps ? pe.reps[0] : 8;
+      const defaultW = pe.weight ?? 0;
+      return {
+        ex: pe.ex,
+        sets: Array.from({ length: pe.sets }, () => ({ w: defaultW, reps: defaultReps, rir: null, fail: false })),
+        target: { weight: pe.weight, reps: pe.reps, rir: pe.rir }
+      };
+    }) : [],
     note: p ? p.note : ""
   };
   saveActive(); render();
@@ -533,6 +537,18 @@ function renderLogging() {
       const bestE = best ? est1rm(best) : 0;
       const isPR = s.reps > 0 && est1rm(s) > bestE;
       const hitTarget = ent.target && s.reps > 0 && s.reps >= ent.target.reps[1] && (s.rir ?? 0) >= 1;
+
+      let adviceHtml = "";
+      if (s.reps > 0) {
+        if (s.fail) {
+          adviceHtml = `<div class="sub" style="font-size:12px;color:var(--serious);margin-top:6px">⚠️ 本组未完成/力竭：建议下一组降低 2.5kg 或延长组间休息</div>`;
+        } else if (s.rir !== null && s.rir >= 3) {
+          adviceHtml = `<div class="sub" style="font-size:12px;color:var(--warn);margin-top:6px">💡 本组偏轻 (RIR ${s.rir})：余力较多，下一组建议 +2.5kg 或微调次数</div>`;
+        } else if (s.rir === 0 && ent.target && s.reps < ent.target.reps[0]) {
+          adviceHtml = `<div class="sub" style="font-size:12px;color:var(--serious);margin-top:6px">⚠️ 负荷偏重（未达处方下限 ${ent.target.reps[0]}次）：下一组建议 -2.5kg 保证质量</div>`;
+        }
+      }
+
       html += `<div class="setrow">
         <div class="head">
           <span class="n">组 ${si + 1}</span>
@@ -561,6 +577,7 @@ function renderLogging() {
             `<button data-a="rir" data-i="${ei}" data-j="${si}" data-v="${r}" class="${s.rir === r ? "on" : ""}">${r}</button>`).join("")}</div>
           <button class="btn btn-sm ${s.fail ? "btn-danger" : ""}" data-a="fail" data-i="${ei}" data-j="${si}">没做到</button>
         </div>
+        ${adviceHtml}
       </div>`;
     });
     html += `</div>`;
@@ -958,11 +975,12 @@ function dailyStep(f, delta, min, max, stepv) {
   const all = getDailyToday();
   const cur = all[todayStr()];
   cur[f] = Math.round(Math.min(max, Math.max(min, ((cur[f] ?? (min + stepv)) + delta) / stepv)) * stepv * 10) / 10;
-  store.set(KEYS.daily, all); render();
+  store.set(KEYS.daily, all); render(true);
 }
 
 /* ===== 渲染入口 ===== */
-function render() {
+function render(keepScroll = false) {
+  const scrollY = keepScroll ? window.scrollY : 0;
   const v = $("#view");
   if (tab === "today") v.innerHTML = renderToday();
   else if (tab === "logs") v.innerHTML = detailId ? renderDetail() : renderLogsList();
@@ -970,7 +988,7 @@ function render() {
   else if (tab === "lib") v.innerHTML = renderLib();
   else if (tab === "daily") v.innerHTML = renderDaily();
   document.querySelectorAll("nav button").forEach(b => b.classList.toggle("on", b.dataset.tab === tab));
-  window.scrollTo(0, 0);
+  window.scrollTo(0, scrollY);
 }
 
 /* ===== 事件 ===== */
@@ -992,23 +1010,25 @@ $("#view").addEventListener("click", ev => {
   if (a === "addset") {
     const ent = active.entries[i];
     const last = ent.sets[ent.sets.length - 1];
-    ent.sets.push({ w: last ? last.w : (ent.target ? ent.target.weight : 0), reps: 0, rir: null, fail: false });
-    saveActive(); render(); return;
+    const defaultReps = last ? last.reps : (ent.target ? ent.target.reps[0] : 8);
+    const defaultW = last ? last.w : (ent.target ? (ent.target.weight ?? 0) : 0);
+    ent.sets.push({ w: defaultW, reps: defaultReps, rir: null, fail: false });
+    saveActive(); render(true); return;
   }
-  if (a === "delset") { active.entries[i].sets.splice(j, 1); saveActive(); render(); return; }
+  if (a === "delset") { active.entries[i].sets.splice(j, 1); saveActive(); render(true); }
   if (a === "w-inc" || a === "w-dec") {
     const s = active.entries[i].sets[j];
     const stepW = 2.5;
     s.w = Math.max(0, Math.round((s.w + (a === "w-inc" ? stepW : -stepW)) * 10) / 10);
-    saveActive(); render(); return;
+    saveActive(); render(true); return;
   }
   if (a === "r-inc" || a === "r-dec") {
     const s = active.entries[i].sets[j];
     s.reps = Math.max(0, (s.reps || 0) + (a === "r-inc" ? 1 : -1));
-    saveActive(); render(); return;
+    saveActive(); render(true); return;
   }
-  if (a === "rir") { active.entries[i].sets[j].rir = +el.dataset.v; saveActive(); render(); return; }
-  if (a === "fail") { const s = active.entries[i].sets[j]; s.fail = !s.fail; saveActive(); render(); return; }
+  if (a === "rir") { active.entries[i].sets[j].rir = +el.dataset.v; saveActive(); render(true); return; }
+  if (a === "fail") { const s = active.entries[i].sets[j]; s.fail = !s.fail; saveActive(); render(true); return; }
   if (a === "finish") { finishSession(); return; }
 
   if (a === "detail") { detailId = +el.dataset.id; render(); return; }
@@ -1037,7 +1057,7 @@ $("#view").addEventListener("click", ev => {
     const all = getDailyToday();
     const cur = all[todayStr()];
     cur[el.dataset.f] = !cur[el.dataset.f];
-    store.set(KEYS.daily, all); render(); return;
+    store.set(KEYS.daily, all); render(true); return;
   }
   if (a === "dl-save") {
     const all = getDailyToday();
