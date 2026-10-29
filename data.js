@@ -149,6 +149,13 @@ const FIT_DATA = {
       { ex: "lat_pulldown", sets: [{ w: 40, reps: 10, rir: 2 }, { w: 40, reps: 10, rir: 2 }, { w: 40, reps: 10, rir: 2 }] },
       { ex: "db_incline_press", sets: [{ w: 20, reps: 11, rir: 2 }, { w: 22.5, reps: 8, rir: 2 }, { w: 22.5, reps: 8, rir: 2 }] },
       { ex: "db_row", sets: [{ w: 22.5, reps: 10, rir: 2 }, { w: 22.5, reps: 10, rir: 2 }, { w: 22.5, reps: 10, rir: 2 }] }
+    ]},
+    { date: "2026-10-28", title: "Day 4 肩+手臂（满负荷）", note: "痊愈后首个满负荷日，耗时38分钟，肩臂满血", entries: [
+      { ex: "db_shoulder_press", sets: [{ w: 22.5, reps: 8, rir: 2 }, { w: 22.5, reps: 7, rir: 1 }, { w: 22.5, reps: 8, rir: 1 }] },
+      { ex: "lateral_raise", sets: [{ w: 10, reps: 14, rir: 2 }, { w: 10, reps: 13, rir: 2 }, { w: 10, reps: 11, rir: 0 }, { w: 10, reps: 12, rir: 0 }] },
+      { ex: "reverse_pec_deck", sets: [{ w: 40, reps: 14, rir: 1 }, { w: 40, reps: 12, rir: 1 }, { w: 40, reps: 11, rir: 1 }] },
+      { ex: "pushdown", sets: [{ w: 40, reps: 10, rir: 1 }, { w: 40, reps: 10, rir: 0 }, { w: 35, reps: 10, rir: 2 }] },
+      { ex: "db_curl", sets: [{ w: 12.5, reps: 8, rir: 0 }, { w: 12.5, reps: 7, rir: 0 }, { w: 10, reps: 10, rir: 2 }] }
     ]}
   ]
 };

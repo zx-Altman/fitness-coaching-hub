@@ -1,0 +1,51 @@
+{
+  "id": 1793210000000,
+  "date": "2026-10-28",
+  "title": "Day 4 肩+手臂（满负荷）",
+  "startedAt": "18:56",
+  "finishedAt": "19:34",
+  "note": "痊愈后首个满负荷日，RIR 1-2",
+  "entries": [
+    {
+      "ex": "db_shoulder_press",
+      "sets": [
+        { "w": 22.5, "reps": 8, "rir": 2, "fail": false },
+        { "w": 22.5, "reps": 7, "rir": 1, "fail": false },
+        { "w": 22.5, "reps": 8, "rir": 1, "fail": false }
+      ]
+    },
+    {
+      "ex": "lateral_raise",
+      "sets": [
+        { "w": 10, "reps": 14, "rir": 2, "fail": false },
+        { "w": 10, "reps": 13, "rir": 2, "fail": false },
+        { "w": 10, "reps": 11, "rir": 0, "fail": false },
+        { "w": 10, "reps": 12, "rir": 0, "fail": false }
+      ]
+    },
+    {
+      "ex": "reverse_pec_deck",
+      "sets": [
+        { "w": 40, "reps": 14, "rir": 1, "fail": false },
+        { "w": 40, "reps": 12, "rir": 1, "fail": false },
+        { "w": 40, "reps": 11, "rir": 1, "fail": false }
+      ]
+    },
+    {
+      "ex": "pushdown",
+      "sets": [
+        { "w": 40, "reps": 10, "rir": 1, "fail": false },
+        { "w": 40, "reps": 10, "rir": 0, "fail": false },
+        { "w": 35, "reps": 10, "rir": 2, "fail": false }
+      ]
+    },
+    {
+      "ex": "db_curl",
+      "sets": [
+        { "w": 12.5, "reps": 8, "rir": 0, "fail": false },
+        { "w": 12.5, "reps": 7, "rir": 0, "fail": false },
+        { "w": 10, "reps": 10, "rir": 2, "fail": false }
+      ]
+    }
+  ]
+}
