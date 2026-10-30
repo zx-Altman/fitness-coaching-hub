@@ -578,6 +578,7 @@ function renderLogging() {
           <button class="btn btn-sm ${s.fail ? "btn-danger" : ""}" data-a="fail" data-i="${ei}" data-j="${si}">没做到</button>
         </div>
         ${adviceHtml}
+        ${s.auto ? `<div class="sub" style="font-size:12px;color:var(--accent);margin-top:4px">⇅ ${esc(s.auto)}</div>` : ""}
       </div>`;
     });
     html += `</div>`;
@@ -586,6 +587,40 @@ function renderLogging() {
   html += `<button class="btn btn-primary btn-block" data-a="finish">完成训练</button>
            <div style="height:8px"></div>`;
   return html;
+}
+
+/* ===== 组间自适应：本组录完 RIR 后自动调整下一组预填值 ===== */
+function autoAdjustNext(i, j) {
+  const ent = active.entries[i];
+  const s = ent.sets[j];
+  const next = ent.sets[j + 1];
+  if (!s.reps || s.rir === null) return;            // 本组未录完
+  if (!next || next.touched || next.rir !== null) return; // 下一组已进入手动模式，绝不覆盖
+
+  const ex = exById(ent.ex);
+  const t = ent.target;
+  let dw = 0, why = "";
+  if (s.fail) { dw = -2.5; why = "未完成"; }
+  else if (t) {
+    const lo = t.reps[0], hi = t.reps[1];
+    if (s.reps >= hi && s.rir >= t.rir + 2) { dw = 2.5; why = "轻松达标"; }
+    else if (s.reps <= lo - 3 || (s.rir === 0 && s.reps < lo)) { dw = -2.5; why = "负荷偏重"; }
+    else why = "疲劳曲线";
+  } else {
+    if (s.rir >= 3) { dw = 2.5; why = "余力较多"; }
+    else if (s.rir === 0) { dw = -2.5; why = "已力竭"; }
+    else why = "疲劳曲线";
+  }
+  if (ex.unit === "自重") dw = 0;                   // 自重只调次数
+
+  if (dw) {
+    next.w = Math.max(0, Math.round((next.w + dw) * 10) / 10);
+    next.auto = `已按组${j + 1}表现${dw > 0 ? "加重" : "降重"}（${why}），可手动修改`;
+    toast(`组${j + 1}${why} → 组${j + 2}已自动${dw > 0 ? "加" : "降"}至 ${next.w}${ex.unit}`);
+  } else if (next.reps !== s.reps) {
+    next.auto = `次数已跟随组${j + 1}实际值（${why}），可手动修改`;
+  }
+  next.reps = dw > 0 && t ? t.reps[0] : s.reps;     // 加重时回到处方下限，其余跟随本组
 }
 /* ===== 云端自动同步 (GitHub REST API) ===== */
 async function syncLogToGitHub(log) {
@@ -1102,15 +1137,22 @@ $("#view").addEventListener("click", ev => {
     const s = active.entries[i].sets[j];
     const stepW = 2.5;
     s.w = Math.max(0, Math.round((s.w + (a === "w-inc" ? stepW : -stepW)) * 10) / 10);
+    s.touched = true; delete s.auto;
     saveActive(); render(true); return;
   }
   if (a === "r-inc" || a === "r-dec") {
     const s = active.entries[i].sets[j];
     s.reps = Math.max(0, (s.reps || 0) + (a === "r-inc" ? 1 : -1));
+    s.touched = true; delete s.auto;
     saveActive(); render(true); return;
   }
-  if (a === "rir") { active.entries[i].sets[j].rir = +el.dataset.v; saveActive(); render(true); return; }
-  if (a === "fail") { const s = active.entries[i].sets[j]; s.fail = !s.fail; saveActive(); render(true); return; }
+  if (a === "rir") {
+    const s = active.entries[i].sets[j];
+    s.rir = +el.dataset.v; s.touched = true; delete s.auto;
+    autoAdjustNext(i, j);
+    saveActive(); render(true); return;
+  }
+  if (a === "fail") { const s = active.entries[i].sets[j]; s.fail = !s.fail; s.touched = true; saveActive(); render(true); return; }
   if (a === "finish") { finishSession(); return; }
 
   if (a === "detail") { detailId = +el.dataset.id; render(); return; }
