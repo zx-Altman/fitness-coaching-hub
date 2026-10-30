@@ -160,6 +160,13 @@ const FIT_DATA = {
       { ex: "reverse_pec_deck", sets: [{ w: 40, reps: 14, rir: 1 }, { w: 40, reps: 12, rir: 1 }, { w: 40, reps: 11, rir: 1 }] },
       { ex: "pushdown", sets: [{ w: 40, reps: 10, rir: 1 }, { w: 40, reps: 10, rir: 0 }, { w: 35, reps: 10, rir: 2 }] },
       { ex: "db_curl", sets: [{ w: 12.5, reps: 8, rir: 0 }, { w: 12.5, reps: 7, rir: 0 }, { w: 10, reps: 10, rir: 2 }] }
+    ]},
+    { date: "2026-10-30", title: "Day 5 背+胸（满负荷）", note: "背部满血，引体第2组11次RIR0；双杠受周三三头疲劳影响低于处方属预判内", entries: [
+      { ex: "pullup", sets: [{ w: 0, reps: 11, rir: 1 }, { w: 0, reps: 11, rir: 0 }, { w: 0, reps: 7, rir: 1 }] },
+      { ex: "seated_cable_row", sets: [{ w: 45, reps: 10, rir: 2 }, { w: 45, reps: 10, rir: 2 }, { w: 45, reps: 9, rir: 2 }] },
+      { ex: "db_row", sets: [{ w: 22.5, reps: 10, rir: 2 }, { w: 22.5, reps: 10, rir: 1 }, { w: 22.5, reps: 10, rir: 1 }] },
+      { ex: "dips", sets: [{ w: 0, reps: 8, rir: 2 }, { w: 0, reps: 7, rir: 1 }, { w: 0, reps: 7, rir: 1 }] },
+      { ex: "straight_arm_pulldown", sets: [{ w: 35, reps: 12, rir: 2 }, { w: 35, reps: 12, rir: 2 }] }
     ]}
   ]
 };
