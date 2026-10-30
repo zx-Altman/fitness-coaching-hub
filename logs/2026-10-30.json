@@ -1,0 +1,119 @@
+{
+  "id": 1793353780727,
+  "date": "2026-10-30",
+  "title": "Day 5 背+胸（满负荷）",
+  "startedAt": "17:12",
+  "finishedAt": "17:49",
+  "note": "练完看状态，周日攻坚前不熬夜",
+  "entries": [
+    {
+      "ex": "pullup",
+      "sets": [
+        {
+          "w": 0,
+          "reps": 11,
+          "rir": 1,
+          "fail": false
+        },
+        {
+          "w": 0,
+          "reps": 11,
+          "rir": 0,
+          "fail": false
+        },
+        {
+          "w": 0,
+          "reps": 7,
+          "rir": 1,
+          "fail": false
+        }
+      ]
+    },
+    {
+      "ex": "seated_cable_row",
+      "sets": [
+        {
+          "w": 45,
+          "reps": 10,
+          "rir": 2,
+          "fail": false
+        },
+        {
+          "w": 45,
+          "reps": 10,
+          "rir": 2,
+          "fail": false
+        },
+        {
+          "w": 45,
+          "reps": 9,
+          "rir": 2,
+          "fail": false
+        }
+      ]
+    },
+    {
+      "ex": "db_row",
+      "sets": [
+        {
+          "w": 22.5,
+          "reps": 10,
+          "rir": 2,
+          "fail": false
+        },
+        {
+          "w": 22.5,
+          "reps": 10,
+          "rir": 1,
+          "fail": false
+        },
+        {
+          "w": 22.5,
+          "reps": 10,
+          "rir": 1,
+          "fail": false
+        }
+      ]
+    },
+    {
+      "ex": "dips",
+      "sets": [
+        {
+          "w": 0,
+          "reps": 8,
+          "rir": 2,
+          "fail": false
+        },
+        {
+          "w": 0,
+          "reps": 7,
+          "rir": 1,
+          "fail": false
+        },
+        {
+          "w": 0,
+          "reps": 7,
+          "rir": 1,
+          "fail": false
+        }
+      ]
+    },
+    {
+      "ex": "straight_arm_pulldown",
+      "sets": [
+        {
+          "w": 35,
+          "reps": 12,
+          "rir": 2,
+          "fail": false
+        },
+        {
+          "w": 35,
+          "reps": 12,
+          "rir": 2,
+          "fail": false
+        }
+      ]
+    }
+  ]
+}
