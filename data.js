@@ -94,7 +94,9 @@ const FIT_DATA = {
     { date: "2026-10-31", title: "轻量腿（护腰版）", note: "背贴靠垫器械为主，RIR3收着练，不碰自由深蹲——腰椎与核心留给明日70kg攻坚；下午练，40分钟内完成", exercises: [
       { ex: "leg_press", sets: 3, weight: 60, reps: [12, 12], rir: 3, note: "背全程贴实靠垫，60kg只是唤醒不是练透" },
       { ex: "leg_curl", sets: 3, weight: 50, reps: [12, 12], rir: 3, note: "顶峰停1秒" },
-      { ex: "calf_raise", sets: 3, weight: 15, reps: [15, 15], rir: 3, note: "可选，想凑时长再做" }
+      { ex: "calf_raise", sets: 3, weight: 15, reps: [15, 15], rir: 3, note: "可选，想凑时长再做" },
+      { ex: "lying_leg_raise", sets: 3, weight: 0, reps: [14, 12], rir: 3, note: "下背贴地不塌腰；腰部有任何发紧就停" },
+      { ex: "vacuum", sets: 3, weight: 0, reps: [15, 15], rir: 3, note: "15秒/次，零疲劳，收紧下腹" }
     ]},
     { date: "2026-11-01", title: "70kg 攻坚战 · 自由卧推", note: "热身：空杆×15 → 40×8 → 50×5 → 60×3，组间充分休息3分钟", exercises: [
       { ex: "flat_bench", sets: 3, weight: 70, reps: [4, 5], rir: 1, note: "70×4 两组；最后一组可降 65×5 收尾" },
