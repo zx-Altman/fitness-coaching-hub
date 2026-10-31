@@ -1,0 +1,140 @@
+{
+  "id": 1793418472654,
+  "date": "2026-10-31",
+  "title": "轻量腿（护腰版）",
+  "startedAt": "11:02",
+  "finishedAt": "11:47",
+  "note": "背贴靠垫器械为主，RIR3收着练，不碰自由深蹲——腰椎与核心留给明日70kg攻坚；下午练，40分钟内完成",
+  "entries": [
+    {
+      "ex": "leg_press",
+      "sets": [
+        {
+          "w": 60,
+          "reps": 14,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 60,
+          "reps": 14,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 60,
+          "reps": 14,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "leg_curl",
+      "sets": [
+        {
+          "w": 52.5,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 52.5,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 52.5,
+          "reps": 9,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "calf_raise",
+      "sets": [
+        {
+          "w": 15,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 15,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 15,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "lying_leg_raise",
+      "sets": [
+        {
+          "w": 0,
+          "reps": 14,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 14,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 14,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "vacuum",
+      "sets": [
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    }
+  ]
+}
