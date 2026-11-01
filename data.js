@@ -21,41 +21,45 @@ const FIT_DATA = {
       cues: ["哑铃下放到上胸两侧，肘与躯干约45-60°", "手腕全程中立", "控制下放2秒，不弹震"] },
     { id: "flat_bench", name: "自由杠铃平板卧推", equip: "自由", unit: "kg", primary: "chest", secondary: ["肩(前束)", "三头"],
       cues: ["斗牛犬握法+护腕（手腕挤压刺痛的解法）", "肩胛后缩下沉、挺胸、双脚踩实", "杠落胸骨中下段，沿略向后上的轨迹推起", "腰部不塌，RIR 2 内完成"] },
+    { id: "spoto_press", name: "Spoto 停顿卧推", equip: "自由", unit: "kg", primary: "chest", secondary: ["肩(前束)", "三头"],
+      cues: ["斗牛犬握法+护腕（同平板卧推）", "杠铃下放到胸上方1-2cm处悬停（不触胸）", "悬停1-2秒：废掉反弹借力，杠稳了再推", "无反弹会显重，RIR按停顿标准估（约常规的8-9折）"] },
     { id: "incline_flye", name: "斜板哑铃飞鸟", equip: "哑铃", unit: "kg/只", primary: "chest", secondary: [],
       cues: ["肘微屈、角度全程固定", "弧线下放至胸肌有拉伸感，想象抱一个桶", "不追求大重量，感受挤压"] },
-    { id: "pec_deck", name: "蝴蝶机夹胸", equip: "器械", unit: "kg", primary: "chest", secondary: [],
+    { id: "pec_deck", name: "蝴蝶机夹胸", equip: "器械", unit: "kg", step: 5, primary: "chest", secondary: [],
       cues: ["肘位与胸同高", "顶峰挤压1秒再回放", "不耸肩"] },
     { id: "dips", name: "双杠臂屈伸", equip: "自重", unit: "自重", primary: "chest", secondary: ["三头"],
       cues: ["身体前倾偏下胸，躯干竖直偏三头", "下放到上臂与地面平行即可", "肩部不适立即停止"] },
-    { id: "lat_pulldown", name: "高位下拉", equip: "器械", unit: "kg", primary: "back", secondary: ["二头"],
+    { id: "lat_pulldown", name: "高位下拉", equip: "器械", unit: "kg", step: 5, primary: "back", secondary: ["二头"],
       cues: ["挺胸，肘部导向髋部（想象肘插口袋）", "下拉至上胸位置", "身体不后仰晃动借力"] },
     { id: "pullup", name: "引体向上", equip: "自重", unit: "自重", primary: "back", secondary: ["二头"],
       cues: ["肩胛先下沉启动，再屈臂拉", "下巴过杠即可，不勉强", "离心下放2秒"] },
-    { id: "seated_cable_row", name: "坐姿绳索划船", equip: "绳索", unit: "kg", primary: "back", secondary: ["二头"],
+    { id: "seated_cable_row", name: "坐姿绳索划船", equip: "绳索", unit: "kg", step: 2.3, primary: "back", secondary: ["二头"],
       cues: ["背挺直，肘贴身拉向腹部", "顶峰挤压1秒", "不靠后仰借力"] },
     { id: "db_row", name: "单臂哑铃划船", equip: "哑铃", unit: "kg/只", primary: "back", secondary: ["二头"],
       cues: ["支撑手撑凳，背部平直不转腰", "肘贴身拉向髋部", "顶峰挤压1秒"] },
-    { id: "straight_arm_pulldown", name: "直臂下拉", equip: "绳索", unit: "kg", primary: "back", secondary: [],
+    { id: "t_bar_row", name: "胸垫T杠划船", equip: "器械", unit: "kg", primary: "back", secondary: ["二头"],
+      cues: ["胸全程贴实靠垫（腰椎零负荷，周末划船首选）", "肘贴身拉向髋部，顶峰挤压1秒", "下放2秒控制，不甩重量"] },
+    { id: "straight_arm_pulldown", name: "直臂下拉", equip: "绳索", unit: "kg", step: 2.3, primary: "back", secondary: [],
       cues: ["肘微屈、角度锁定", "双臂弧线压向大腿", "感受背阔肌的拉伸与收缩，重量宜轻"] },
-    { id: "reverse_pec_deck", name: "蝴蝶机反向飞鸟", equip: "器械", unit: "kg", primary: "shoulders", secondary: ["背"],
+    { id: "reverse_pec_deck", name: "蝴蝶机反向飞鸟", equip: "器械", unit: "kg", step: 5, primary: "shoulders", secondary: ["背"],
       cues: ["肘微屈，虎口相对", "向后展开至肩平面即可", "重量轻，专注后束挤压"] },
     { id: "db_shoulder_press", name: "坐姿哑铃推举", equip: "哑铃", unit: "kg/只", primary: "shoulders", secondary: ["三头"],
       cues: ["背贴靠垫，肋骨下压", "哑铃下放到耳侧，小臂全程垂直", "不靠腰椎过伸借力"] },
     { id: "lateral_raise", name: "站姿侧平举", equip: "哑铃", unit: "kg/只", primary: "shoulders", secondary: [],
       cues: ["肘领先、抬到肩平面即可", "不耸肩", "离心2秒，轻重量高次数"] },
-    { id: "pushdown", name: "绳索下压", equip: "绳索", unit: "kg", primary: "triceps", secondary: [],
+    { id: "pushdown", name: "绳索下压", equip: "绳索", unit: "kg", step: 2.3, primary: "triceps", secondary: [],
       cues: ["肘贴身固定，只有小臂动", "压到底顶峰1秒", "身体不前倾借力"] },
     { id: "db_curl", name: "哑铃弯举", equip: "哑铃", unit: "kg/只", primary: "biceps", secondary: [],
       cues: ["肘固定在身侧", "不晃腰借力", "离心2秒，顶端可外旋强化挤压"] },
     { id: "back_squat", name: "自由杠铃深蹲", equip: "自由", unit: "kg", primary: "legs", secondary: ["核心"],
       cues: ["瓦氏呼吸绷紧核心再下蹲（护腰关键）", "下蹲至大腿平行以下（活动度允许时）", "膝盖全程外展，严禁屁股眨眼", "保持 RIR 2，不冲极限"] },
-    { id: "hack_squat", name: "哈克深蹲", equip: "器械", unit: "kg", primary: "legs", secondary: [],
+    { id: "hack_squat", name: "哈克深蹲", equip: "器械", unit: "kg", step: 6.8, primary: "legs", secondary: [],
       cues: ["背贴稳靠垫（对腰椎最友好的蹲类）", "脚位中偏上，深度至大腿平行", "膝盖不内扣"] },
-    { id: "leg_press", name: "倒蹬", equip: "器械", unit: "kg", primary: "legs", secondary: [],
+    { id: "leg_press", name: "倒蹬", equip: "器械", unit: "kg", step: 6.8, primary: "legs", secondary: [],
       cues: ["全脚掌踩实", "下放到臀部不卷离靠垫", "膝盖不内扣"] },
-    { id: "leg_curl", name: "腿弯举", equip: "器械", unit: "kg", primary: "legs", secondary: [],
+    { id: "leg_curl", name: "腿弯举", equip: "器械", unit: "kg", step: 6.8, primary: "legs", secondary: [],
       cues: ["髋部贴稳不抬起", "顶峰停1秒", "离心控制2秒"] },
-    { id: "leg_ext", name: "腿屈伸", equip: "器械", unit: "kg", primary: "legs", secondary: [],
+    { id: "leg_ext", name: "腿屈伸", equip: "器械", unit: "kg", step: 6.8, primary: "legs", secondary: [],
       cues: ["顶端挤压1秒", "离心2秒回放", "重量适中不弹震"] },
     { id: "bulgarian_split", name: "保加利亚剪蹲", equip: "哑铃", unit: "kg/只", primary: "legs", secondary: [],
       cues: ["后脚搭凳，前腿主导发力", "躯干微前倾偏臀，竖直偏股四头", "前膝对准脚尖方向"] },
@@ -71,36 +75,33 @@ const FIT_DATA = {
 
   // ===== 训练处方（按日期，教练每周更新） =====
   plans: [
-    { date: "2026-10-27", title: "轻量腿（唤醒）", note: "RIR 3 收着练，目的是唤醒不是练透；腘绳肌留给自由架", exercises: [
-      { ex: "hack_squat", sets: 3, weight: 40, reps: [10, 12], rir: 3, note: "有经验按RIR自选重量，40kg起步，轻了就加" },
-      { ex: "bulgarian_split", sets: 3, weight: 12.5, reps: [10, 10], rir: 3, note: "双手各持一只" },
-      { ex: "calf_raise", sets: 3, weight: 15, reps: [15, 15], rir: 3, note: "可选，想凑时长再做" }
+    { date: "2026-11-02", title: "腿日（哈克主项）", note: "新周期第一练：结构性修正落地，腿容量回归主分化", exercises: [
+      { ex: "hack_squat", sets: 4, weight: 50, reps: [10, 8], rir: 2, note: "起步50kg轻了就加，按RIR收口；背贴稳靠垫，膝盖不内扣" },
+      { ex: "leg_curl", sets: 3, weight: 52.5, reps: [12, 12], rir: 2 },
+      { ex: "leg_ext", sets: 3, weight: 39, reps: [12, 12], rir: 2 },
+      { ex: "calf_raise", sets: 3, weight: 15, reps: [15, 15], rir: 2, note: "可选，想凑时长再做" },
+      { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [14, 14], rir: 2, note: "收尾" }
     ]},
-    { date: "2026-10-28", title: "Day 4 肩+手臂（满负荷）", note: "痊愈后首个满负荷日，RIR 1-2", exercises: [
-      { ex: "db_shoulder_press", sets: 3, weight: 22.5, reps: [9, 7], rir: 1 },
+    { date: "2026-11-03", title: "休息", rest: true, note: "" },
+    { date: "2026-11-04", title: "Day 1 胸+背（停顿版）", note: "距周日攻坚72h，胸三头已恢复；停顿版无反弹会显重，RIR按停顿标准估", exercises: [
+      { ex: "smith_incline", sets: 3, weight: 22.5, reps: [8, 6], rir: 2, note: "停顿版：杠落到上胸停1秒再推，轨迹稳定优先" },
+      { ex: "lat_pulldown", sets: 3, weight: 45, reps: [10, 9], rir: 2 },
+      { ex: "db_incline_press", sets: 3, weight: 22.5, reps: [9, 7], rir: 2 },
+      { ex: "db_row", sets: 3, weight: 22.5, reps: [10, 9], rir: 2 },
+      { ex: "straight_arm_pulldown", sets: 2, weight: 35, reps: [12, 12], rir: 2 }
+    ]},
+    { date: "2026-11-05", title: "休息", rest: true, note: "" },
+    { date: "2026-11-06", title: "Day 4 肩+手臂", note: "三头直接容量下调（卧推频率上升，护肘）", exercises: [
+      { ex: "db_shoulder_press", sets: 3, weight: 22.5, reps: [9, 8], rir: 1 },
       { ex: "lateral_raise", sets: 4, weight: 10, reps: [15, 13], rir: 1 },
-      { ex: "reverse_pec_deck", sets: 3, weight: 40, reps: [13, 12], rir: 1 },
-      { ex: "pushdown", sets: 3, weight: 35, reps: [15, 10], rir: 1, note: "与弯举做超级组" },
-      { ex: "db_curl", sets: 3, weight: 12.5, reps: [11, 8], rir: 1, note: "与下压做超级组" }
+      { ex: "reverse_pec_deck", sets: 3, weight: 40, reps: [14, 12], rir: 1 },
+      { ex: "pushdown", sets: 2, weight: 40, reps: [10, 10], rir: 1, note: "降为2组护肘，与弯举做超级组" },
+      { ex: "db_curl", sets: 3, weight: 12.5, reps: [10, 8], rir: 1, note: "与下压做超级组" }
     ]},
-    { date: "2026-10-29", title: "休息", rest: true, note: "继续补觉，睡眠债还剩一点" },
-    { date: "2026-10-30", title: "Day 5 背+胸（满负荷）", note: "练完看状态，周日攻坚前不熬夜", exercises: [
-      { ex: "pullup", sets: 3, weight: 0, reps: [11, 8], rir: 1 },
-      { ex: "seated_cable_row", sets: 3, weight: 45, reps: [10, 9], rir: 1 },
-      { ex: "db_row", sets: 3, weight: 22.5, reps: [10, 9], rir: 1 },
-      { ex: "dips", sets: 3, weight: 0, reps: [10, 8], rir: 1 },
-      { ex: "straight_arm_pulldown", sets: 2, weight: 35, reps: [12, 12], rir: 1 }
-    ]},
-    { date: "2026-10-31", title: "轻量腿（护腰版）", note: "背贴靠垫器械为主，RIR3收着练，不碰自由深蹲——腰椎与核心留给明日70kg攻坚；下午练，40分钟内完成", exercises: [
-      { ex: "leg_press", sets: 3, weight: 60, reps: [12, 12], rir: 3, note: "背全程贴实靠垫，60kg只是唤醒不是练透" },
-      { ex: "leg_curl", sets: 3, weight: 50, reps: [12, 12], rir: 3, note: "顶峰停1秒" },
-      { ex: "calf_raise", sets: 3, weight: 15, reps: [15, 15], rir: 3, note: "可选，想凑时长再做" },
-      { ex: "lying_leg_raise", sets: 3, weight: 0, reps: [14, 12], rir: 3, note: "下背贴地不塌腰；腰部有任何发紧就停" },
-      { ex: "vacuum", sets: 3, weight: 0, reps: [15, 15], rir: 3, note: "15秒/次，零疲劳，收紧下腹" }
-    ]},
-    { date: "2026-11-01", title: "70kg 攻坚战 · 自由卧推", note: "热身：空杆×15 → 40×8 → 50×5 → 60×3，组间充分休息3分钟", exercises: [
-      { ex: "flat_bench", sets: 3, weight: 70, reps: [4, 5], rir: 1, note: "70×4 两组；最后一组可降 65×5 收尾" },
-      { ex: "db_row", sets: 2, weight: 40, reps: [14, 12], rir: 2 },
+    { date: "2026-11-07", title: "休息（蓄力）", rest: true, note: "为明日Spoto首秀蓄力：吃够碳水、早睡" },
+    { date: "2026-11-08", title: "Spoto 停顿卧推 · 首秀", note: "热身：空杆×15 → 40×8 → 50×5；悬停胸上1-2cm停1-2秒，废掉反弹", exercises: [
+      { ex: "spoto_press", sets: 4, weight: 55, reps: [6, 4], rir: 2, note: "55kg≈70%极限；无反弹会显重，别用常规RIR估" },
+      { ex: "t_bar_row", sets: 3, weight: 40, reps: [10, 10], rir: 2, note: "胸垫T杠；若无此器械换哑铃划船45kg×10" },
       { ex: "incline_flye", sets: 3, weight: 12.5, reps: [10, 10], rir: 2 }
     ]}
   ],

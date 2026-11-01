@@ -232,7 +232,7 @@
   <button data-tab="daily"><span class="ico">☀</span>日常</button>
 </div></nav>
 
-<script src="data.js?v=2026-10-31"></script>
+<script src="data.js?v=2026-11-01"></script>
 <script>
 "use strict";
 /* ===== 存储 ===== */
@@ -539,13 +539,14 @@ function renderLogging() {
       const hitTarget = ent.target && s.reps > 0 && s.reps >= ent.target.reps[1] && (s.rir ?? 0) >= 1;
 
       let adviceHtml = "";
+      const stp = ex.step || 2.5;
       if (s.reps > 0) {
         if (s.fail) {
-          adviceHtml = `<div class="sub" style="font-size:12px;color:var(--serious);margin-top:6px">⚠️ 本组未完成/力竭：建议下一组降低 2.5kg 或延长组间休息</div>`;
+          adviceHtml = `<div class="sub" style="font-size:12px;color:var(--serious);margin-top:6px">⚠️ 本组未完成/力竭：建议下一组降低 ${stp}kg 或延长组间休息</div>`;
         } else if (s.rir !== null && s.rir >= 3) {
-          adviceHtml = `<div class="sub" style="font-size:12px;color:var(--warn);margin-top:6px">💡 本组偏轻 (RIR ${s.rir})：余力较多，下一组建议 +2.5kg 或微调次数</div>`;
+          adviceHtml = `<div class="sub" style="font-size:12px;color:var(--warn);margin-top:6px">💡 本组偏轻 (RIR ${s.rir})：余力较多，下一组建议 +${stp}kg 或微调次数</div>`;
         } else if (s.rir === 0 && ent.target && s.reps < ent.target.reps[0]) {
-          adviceHtml = `<div class="sub" style="font-size:12px;color:var(--serious);margin-top:6px">⚠️ 负荷偏重（未达处方下限 ${ent.target.reps[0]}次）：下一组建议 -2.5kg 保证质量</div>`;
+          adviceHtml = `<div class="sub" style="font-size:12px;color:var(--serious);margin-top:6px">⚠️ 负荷偏重（未达处方下限 ${ent.target.reps[0]}次）：下一组建议 -${stp}kg 保证质量</div>`;
         }
       }
 
@@ -598,17 +599,18 @@ function autoAdjustNext(i, j) {
   if (!next || next.touched || next.rir !== null) return; // 下一组已进入手动模式，绝不覆盖
 
   const ex = exById(ent.ex);
+  const step = ex ? (ex.step || 2.5) : 2.5;
   const t = ent.target;
   let dw = 0, why = "";
-  if (s.fail) { dw = -2.5; why = "未完成"; }
+  if (s.fail) { dw = -step; why = "未完成"; }
   else if (t) {
     const lo = t.reps[0], hi = t.reps[1];
-    if (s.reps >= hi && s.rir >= t.rir + 2) { dw = 2.5; why = "轻松达标"; }
-    else if (s.reps <= lo - 3 || (s.rir === 0 && s.reps < lo)) { dw = -2.5; why = "负荷偏重"; }
+    if (s.reps >= hi && s.rir >= t.rir + 2) { dw = step; why = "轻松达标"; }
+    else if (s.reps <= lo - 3 || (s.rir === 0 && s.reps < lo)) { dw = -step; why = "负荷偏重"; }
     else why = "疲劳曲线";
   } else {
-    if (s.rir >= 3) { dw = 2.5; why = "余力较多"; }
-    else if (s.rir === 0) { dw = -2.5; why = "已力竭"; }
+    if (s.rir >= 3) { dw = step; why = "余力较多"; }
+    else if (s.rir === 0) { dw = -step; why = "已力竭"; }
     else why = "疲劳曲线";
   }
   if (ex.unit === "自重") dw = 0;                   // 自重只调次数
@@ -848,6 +850,14 @@ const EX_ART = {
     POLY("78,69 80,52 78,38") +                                          // 手臂
     C(78, 34, 8) + C(78, 34, 2.5) +                                      // 杠铃（端视）
     ARROW(102, 26, 102, 54)),
+  spoto_press: artWrap(
+    P(38, 72, 128, 72) + P(48, 72, 48, 100) + P(118, 72, 118, 100) +   // 卧推凳
+    C(52, 65, 7) + P(60, 69, 112, 70) +
+    POLY("112,70 140,82 146,104") + POLY("108,70 134,84 140,104") +
+    POLY("78,69 82,54 80,40") +                                          // 屈臂悬停位
+    C(80, 36, 8) + C(80, 36, 2.5) +                                      // 杠铃悬停（不触胸）
+    P(62, 62, 98, 62, "dash") +                                          // 胸上1-2cm悬停线
+    ARROW(104, 24, 104, 50)),
   smith_incline: artWrap(
     P(30, 84, 130, 52) + P(38, 84, 38, 102) + P(122, 56, 122, 102) +    // 上斜凳
     C(40, 76, 7) + P(50, 79, 115, 58) +
@@ -916,6 +926,13 @@ const EX_ART = {
     POLY("68,62 56,66 44,66") + C(22, 66, 5) +                           // 手臂+滑轮
     P(38, 66, 27, 66) + RECT(12, 72, 10, 24) +
     ARROW(50, 54, 64, 56)),
+  t_bar_row: artWrap(
+    P(64, 42, 118, 66) + P(64, 42, 64, 104) +                            // 斜垫+支架
+    C(56, 50, 7) + P(58, 57, 70, 66) +                                   // 头+躯干贴垫
+    POLY("70,66 92,78 96,104") + POLY("66,64 86,78 88,104") +           // 双腿
+    POLY("66,60 80,72 96,80") + C(102, 82, 4) +                          // 拉杆手臂+握把
+    P(94, 88, 124, 98) +                                                 // T杠
+    ARROW(100, 92, 78, 74)),
   db_row: artWrap(
     P(40, 58, 100, 58) + P(48, 58, 48, 104) + P(92, 58, 92, 104) +       // 凳
     POLY("56,104 58,84 70,66") +                                          // 支撑腿
@@ -1135,7 +1152,7 @@ $("#view").addEventListener("click", ev => {
   if (a === "delset") { active.entries[i].sets.splice(j, 1); saveActive(); render(true); }
   if (a === "w-inc" || a === "w-dec") {
     const s = active.entries[i].sets[j];
-    const stepW = 2.5;
+    const stepW = exById(active.entries[i].ex)?.step || 2.5;
     s.w = Math.max(0, Math.round((s.w + (a === "w-inc" ? stepW : -stepW)) * 10) / 10);
     s.touched = true; delete s.auto;
     saveActive(); render(true); return;
