@@ -1,0 +1,88 @@
+{
+  "id": 1793504835728,
+  "date": "2026-11-01",
+  "title": "70kg 攻坚战 · 自由卧推",
+  "startedAt": "11:09",
+  "finishedAt": "11:47",
+  "note": "热身：空杆×15 → 40×8 → 50×5 → 60×3，组间充分休息3分钟",
+  "entries": [
+    {
+      "ex": "flat_bench",
+      "sets": [
+        {
+          "w": 70,
+          "reps": 4,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 70,
+          "reps": 4,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 70,
+          "reps": 4,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 60,
+          "reps": 5,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "db_row",
+      "sets": [
+        {
+          "w": 45,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 45,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "incline_flye",
+      "sets": [
+        {
+          "w": 12.5,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12.5,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12.5,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    }
+  ]
+}
