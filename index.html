@@ -236,7 +236,7 @@
 <script>
 "use strict";
 /* ===== 存储 ===== */
-const KEYS = { logs: "fh_logs_v1", daily: "fh_daily_v1", active: "fh_active_v1", seeded: "fh_seeded_v1", token: "fh_ghtoken_v1" };
+const KEYS = { logs: "fh_logs_v1", daily: "fh_daily_v1", active: "fh_active_v1", seeded: "fh_seeded_v1", token: "fh_ghtoken_v1", dailySynced: "fh_dailysync_v1" };
 const store = {
   get(k, f) { try { const v = JSON.parse(localStorage.getItem(k)); return v ?? f; } catch (e) { return f; } },
   set(k, v) { localStorage.setItem(k, JSON.stringify(v)); }
@@ -625,57 +625,52 @@ function autoAdjustNext(i, j) {
   next.reps = dw > 0 && t ? t.reps[0] : s.reps;     // 加重时回到处方下限，其余跟随本组
 }
 /* ===== 云端自动同步 (GitHub REST API) ===== */
-async function syncLogToGitHub(log) {
+function ghBase64(str) {
+  const bytes = new TextEncoder().encode(str);
+  let bin = "";
+  bytes.forEach(b => bin += String.fromCharCode(b));
+  return btoa(bin);
+}
+async function ghPutFile(path, content, message) {
   const token = localStorage.getItem(KEYS.token);
-  if (!token) return;
+  if (!token) return { ok: false, noToken: true };
+  const url = `https://api.github.com/repos/zx-Altman/fitness-coaching-hub/contents/${path}`;
+  const headers = {
+    "Authorization": `token ${token.trim()}`,
+    "Accept": "application/vnd.github.v3+json",
+    "Content-Type": "application/json"
+  };
+  let sha = null;
+  try {
+    const r = await fetch(url, { headers });
+    if (r.ok) sha = (await r.json()).sha;
+  } catch (e) {}
+  const body = { message, content: ghBase64(content) };
+  if (sha) body.sha = sha;
+  const res = await fetch(url, { method: "PUT", headers, body: JSON.stringify(body) });
+  return { ok: res.ok, status: res.status };
+}
+async function syncLogToGitHub(log) {
+  if (!localStorage.getItem(KEYS.token)) return;
   toast("正在自动同步到 GitHub ☁️...");
   try {
-    const repo = "zx-Altman/fitness-coaching-hub";
-    const path = `logs/${log.date}.json`;
-    const url = `https://api.github.com/repos/${repo}/contents/${path}`;
-    const headers = {
-      "Authorization": `token ${token.trim()}`,
-      "Accept": "application/vnd.github.v3+json",
-      "Content-Type": "application/json"
-    };
-
-    let sha = null;
-    try {
-      const checkRes = await fetch(url, { headers });
-      if (checkRes.ok) {
-        const checkData = await checkRes.json();
-        sha = checkData.sha;
-      }
-    } catch (e) {}
-
-    const jsonStr = JSON.stringify(log, null, 2);
-    const utf8Bytes = new TextEncoder().encode(jsonStr);
-    let binary = "";
-    utf8Bytes.forEach(b => binary += String.fromCharCode(b));
-    const b64Content = btoa(binary);
-
-    const body = {
-      message: `chore(log): auto-sync ${log.date} workout`,
-      content: b64Content
-    };
-    if (sha) body.sha = sha;
-
-    const putRes = await fetch(url, {
-      method: "PUT",
-      headers,
-      body: JSON.stringify(body)
-    });
-
-    if (putRes.ok) {
-      toast("已完成训练，数据已自动同步至 GitHub ☁️");
-    } else {
-      const errJson = await putRes.json().catch(() => ({}));
-      toast(`同步失败: ${errJson.message || putRes.status}`);
-    }
+    const r = await ghPutFile(`logs/${log.date}.json`, JSON.stringify(log, null, 2), `chore(log): auto-sync ${log.date} workout`);
+    if (r.ok) toast("已完成训练，数据已自动同步至 GitHub ☁️");
+    else if (!r.noToken) toast(`同步失败: ${r.status}`);
   } catch (err) {
     console.error("GitHub Sync error:", err);
     toast("网络异常，已保存在本地");
   }
+}
+async function syncDailyToGitHub() {
+  if (!localStorage.getItem(KEYS.token)) return;
+  const all = store.get(KEYS.daily, {});
+  const jsonStr = JSON.stringify(all);
+  if (jsonStr === localStorage.getItem(KEYS.dailySynced)) return; // 无变化不上传，避免垃圾提交
+  try {
+    const r = await ghPutFile("daily/all.json", JSON.stringify(all, null, 2), "chore(daily): sync daily records");
+    if (r.ok) localStorage.setItem(KEYS.dailySynced, jsonStr);
+  } catch (err) { console.error("Daily sync error:", err); }
 }
 
 async function testGitHubToken(token) {
@@ -1206,7 +1201,7 @@ $("#view").addEventListener("click", ev => {
     const w = parseFloat($("#d-weight").value);
     cur.weight = isNaN(w) ? null : w;
     cur.note = $("#d-note").value.trim();
-    store.set(KEYS.daily, all); toast("已保存"); render(true); return;
+    store.set(KEYS.daily, all); toast("已保存"); syncDailyToGitHub(); render(true); return;
   }
   if (a === "save-token") {
     const tok = $("#gh-token-input").value.trim();
@@ -1243,6 +1238,7 @@ if ('serviceWorker' in navigator) {
       .catch(err => console.error('SW reg failed:', err));
   });
 }
+window.addEventListener('load', () => { syncDailyToGitHub(); }); // 打开App即静默补传日常记录（含历史）
 </script>
 </body>
 </html>
