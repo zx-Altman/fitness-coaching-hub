@@ -1,0 +1,137 @@
+{
+  "id": 1793617409427,
+  "date": "2026-11-02",
+  "title": "腿日（哈克主项）",
+  "startedAt": "18:21",
+  "finishedAt": "19:03",
+  "note": "新周期第一练：结构性修正落地，腿容量回归主分化",
+  "entries": [
+    {
+      "ex": "hack_squat",
+      "sets": [
+        {
+          "w": 84,
+          "reps": 15,
+          "rir": 3,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 104.4,
+          "reps": 13,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 118,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 118,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "leg_curl",
+      "sets": [
+        {
+          "w": 52.5,
+          "reps": 12,
+          "rir": null,
+          "fail": false
+        },
+        {
+          "w": 52.5,
+          "reps": 12,
+          "rir": null,
+          "fail": false
+        },
+        {
+          "w": 52.5,
+          "reps": 12,
+          "rir": null,
+          "fail": false
+        }
+      ]
+    },
+    {
+      "ex": "leg_ext",
+      "sets": [
+        {
+          "w": 45.8,
+          "reps": 10,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 39,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 39,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "calf_raise",
+      "sets": [
+        {
+          "w": 7.5,
+          "reps": 20,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 7.5,
+          "reps": 20,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 7.5,
+          "reps": 20,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "lying_leg_raise",
+      "sets": [
+        {
+          "w": 0,
+          "reps": 14,
+          "rir": 3,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 14,
+          "rir": 3,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    }
+  ]
+}
