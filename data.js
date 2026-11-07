@@ -98,7 +98,12 @@ const FIT_DATA = {
       { ex: "pushdown", sets: 2, weight: 40, reps: [10, 10], rir: 1, note: "降为2组护肘，与弯举做超级组" },
       { ex: "db_curl", sets: 3, weight: 12.5, reps: [10, 8], rir: 1, note: "与下压做超级组" }
     ]},
-    { date: "2026-11-07", title: "休息（蓄力）", rest: true, note: "为明日Spoto首秀蓄力：吃够碳水、早睡" },
+    { date: "2026-11-07", title: "自由深蹲回归日", note: "断训3周回归：只找回模式不冲重量。热身：空杆×10 → 50×8 → 65×5；高杠（左肩刚恢复，不用低杠）", exercises: [
+      { ex: "back_squat", sets: 4, weight: 70, reps: [8, 8], rir: 2, note: "回归起点70kg不碰75；瓦氏呼吸护腰，深度到位不眨眼" },
+      { ex: "leg_curl", sets: 3, weight: 52.5, reps: [12, 12], rir: 2, note: "补腘绳缺口：周一此槽位被蹬腿替代，本周后侧链零直接容量" },
+      { ex: "calf_raise", sets: 2, weight: 15, reps: [15, 15], rir: 2 },
+      { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [14, 14], rir: 2, note: "收尾" }
+    ]},
     { date: "2026-11-08", title: "Spoto 停顿卧推 · 首秀", note: "热身：空杆×15 → 40×8 → 50×5；悬停胸上1-2cm停1-2秒，废掉反弹", exercises: [
       { ex: "spoto_press", sets: 4, weight: 55, reps: [6, 4], rir: 2, note: "55kg≈70%极限；无反弹会显重，别用常规RIR估" },
       { ex: "t_bar_row", sets: 3, weight: 40, reps: [10, 10], rir: 2, note: "胸垫T杠；若无此器械换哑铃划船45kg×10" },
