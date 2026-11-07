@@ -1,0 +1,48 @@
+{
+  "id": 1794000000000,
+  "date": "2026-11-07",
+  "title": "自由深蹲回归日",
+  "startedAt": "",
+  "finishedAt": "",
+  "note": "教练补录（手机端未显示处方：本地提交待push）。断训3周回归，力量零损失，下周回75kg。热身：空杆×12 → 40×10 → 60×8",
+  "entries": [
+    {
+      "ex": "back_squat",
+      "sets": [
+        { "w": 70, "reps": 10, "rir": 2, "fail": false, "touched": true },
+        { "w": 70, "reps": 10, "rir": 2, "fail": false, "touched": true },
+        { "w": 70, "reps": 10, "rir": 2, "fail": false, "touched": true },
+        { "w": 70, "reps": 8, "rir": 1, "fail": false, "touched": true }
+      ]
+    },
+    {
+      "ex": "leg_ext",
+      "sets": [
+        { "w": 39, "reps": 10, "rir": 2, "fail": false, "touched": true }
+      ]
+    },
+    {
+      "ex": "leg_curl",
+      "sets": [
+        { "w": 45, "reps": 10, "rir": 2, "fail": false, "touched": true },
+        { "w": 45, "reps": 10, "rir": 2, "fail": false, "touched": true }
+      ]
+    },
+    {
+      "ex": "calf_raise",
+      "sets": [
+        { "w": 12.5, "reps": 15, "rir": 2, "fail": false, "touched": true },
+        { "w": 12.5, "reps": 15, "rir": 2, "fail": false, "touched": true },
+        { "w": 12.5, "reps": 15, "rir": 2, "fail": false, "touched": true }
+      ]
+    },
+    {
+      "ex": "lying_leg_raise",
+      "sets": [
+        { "w": 0, "reps": 15, "rir": 2, "fail": false, "touched": true },
+        { "w": 0, "reps": 15, "rir": 2, "fail": false, "touched": true },
+        { "w": 0, "reps": 15, "rir": 2, "fail": false, "touched": true }
+      ]
+    }
+  ]
+}
