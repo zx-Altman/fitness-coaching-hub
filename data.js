@@ -108,6 +108,39 @@ const FIT_DATA = {
       { ex: "spoto_press", sets: 4, weight: 55, reps: [6, 4], rir: 2, note: "55kg≈70%极限；无反弹会显重，别用常规RIR估" },
       { ex: "t_bar_row", sets: 3, weight: 40, reps: [10, 10], rir: 2, note: "胸垫T杠；若无此器械换哑铃划船45kg×10" },
       { ex: "incline_flye", sets: 3, weight: 12.5, reps: [10, 10], rir: 2 }
+    ]},
+    { date: "2026-11-09", title: "休息", rest: true, note: "Spoto后胸三头恢复 + 深蹲DOMS消退期" },
+    { date: "2026-11-10", title: "腿日（哈克渐进）", note: "腿日固定周二版首周：距周六深蹲76h，DOMS已清", exercises: [
+      { ex: "hack_squat", sets: 4, weight: 118, reps: [11, 10], rir: 2, note: "118×10基准上渐进：目标11-12次；RIR不够就停在10" },
+      { ex: "leg_curl", sets: 3, weight: 52.5, reps: [12, 12], rir: 2, note: "补腘绳：客户馆基准" },
+      { ex: "leg_ext", sets: 2, weight: 39, reps: [12, 12], rir: 2, note: "降至2组：周六已有深蹲，控总量" },
+      { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [14, 14], rir: 2, note: "收尾" }
+    ]},
+    { date: "2026-11-11", title: "休息", rest: true, note: "" },
+    { date: "2026-11-12", title: "Day 1 胸+背（停顿版·升档）", note: "距周日Spoto 96h；停顿版已追平非停顿，正式升25/边", exercises: [
+      { ex: "smith_incline", sets: 3, weight: 25, reps: [8, 6], rir: 2, note: "停顿1秒；首组若8次做不到稳回22.5，不硬撑" },
+      { ex: "lat_pulldown", sets: 3, weight: 45, reps: [10, 9], rir: 2 },
+      { ex: "db_incline_press", sets: 3, weight: 22.5, reps: [10, 8], rir: 2, note: "上周22.5×10为PR，目标三组均匀" },
+      { ex: "db_row", sets: 3, weight: 25, reps: [10, 9], rir: 2, note: "上周首组25×10成立，本周正式以25为主" },
+      { ex: "straight_arm_pulldown", sets: 2, weight: 35, reps: [12, 12], rir: 2 }
+    ]},
+    { date: "2026-11-13", title: "Day 4 肩+手臂", note: "侧平举升重试探；三头维持2组护肘", exercises: [
+      { ex: "db_shoulder_press", sets: 3, weight: 22.5, reps: [8, 8], rir: 1, note: "目标三组均匀8/8/8，达成后下周升25" },
+      { ex: "lateral_raise", sets: 4, weight: 12.5, reps: [10, 8], rir: 1, note: "升重试探：首组10×10做不到就回10kg做到16+" },
+      { ex: "reverse_pec_deck", sets: 3, weight: 40, reps: [15, 12], rir: 1 },
+      { ex: "pushdown", sets: 2, weight: 40, reps: [10, 10], rir: 1, note: "护肘维持2组" },
+      { ex: "db_curl", sets: 3, weight: 12.5, reps: [10, 9], rir: 1 }
+    ]},
+    { date: "2026-11-14", title: "自由深蹲（回归75kg）", note: "上周70×10×3零损失，正式回归75；热身：空杆×12 → 50×8 → 65×5", exercises: [
+      { ex: "back_squat", sets: 4, weight: 75, reps: [8, 8], rir: 2, note: "瓦氏呼吸护腰；第4组崩到6次以内则第3组后收手" },
+      { ex: "leg_curl", sets: 3, weight: 45, reps: [12, 12], rir: 2, note: "周末馆基准45kg，目标12次×3" },
+      { ex: "calf_raise", sets: 2, weight: 12.5, reps: [15, 15], rir: 2 }
+    ]},
+    { date: "2026-11-15", title: "Spoto 第二课（RIR纪律）", note: "热身：肩袖激活 → 空杆×15 → 40×8 → 50×5；本周按60kg做，但RIR回到2", exercises: [
+      { ex: "spoto_press", sets: 4, weight: 60, reps: [6, 5], rir: 2, note: "上周60×6实际RIR0-1偏深；本周同重量但每组留2次余地" },
+      { ex: "t_bar_row", sets: 4, weight: 50, reps: [12, 10], rir: 2, note: "50kg成立，加1组：容量反馈采纳" },
+      { ex: "lat_pulldown", sets: 2, weight: 45, reps: [10, 9], rir: 2, note: "新增：周末馆高位下拉，补背部容量" },
+      { ex: "incline_flye", sets: 3, weight: 12.5, reps: [10, 10], rir: 2 }
     ]}
   ],
 

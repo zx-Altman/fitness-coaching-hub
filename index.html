@@ -232,7 +232,7 @@
   <button data-tab="daily"><span class="ico">☀</span>日常</button>
 </div></nav>
 
-<script src="data.js?v=2026-11-07a"></script>
+<script src="data.js?v=2026-11-08"></script>
 <script>
 "use strict";
 /* ===== 存储 ===== */
@@ -1101,10 +1101,22 @@ function getDailyToday() {
   return all;
 }
 function dailyStep(f, delta, min, max, stepv) {
+  harvestDailyDraft();
   const all = getDailyToday();
   const cur = all[todayStr()];
   cur[f] = Math.round(Math.min(max, Math.max(min, ((cur[f] ?? (min + stepv)) + delta) / stepv)) * stepv * 10) / 10;
   store.set(KEYS.daily, all); render(true);
+}
+/* 把输入框里未保存的体重/备注草稿先收进存储，防止切换按钮触发重绘时丢失 */
+function harvestDailyDraft() {
+  const wEl = $("#d-weight"), nEl = $("#d-note");
+  if (!wEl || !nEl) return;
+  const all = getDailyToday();
+  const cur = all[todayStr()];
+  const w = parseFloat(wEl.value);
+  cur.weight = isNaN(w) ? null : w;
+  cur.note = nEl.value.trim();
+  store.set(KEYS.daily, all);
 }
 
 /* ===== 渲染入口 ===== */
@@ -1190,18 +1202,15 @@ $("#view").addEventListener("click", ev => {
     return;
   }
   if (a === "dl-toggle") {
+    harvestDailyDraft();
     const all = getDailyToday();
     const cur = all[todayStr()];
     cur[el.dataset.f] = !cur[el.dataset.f];
     store.set(KEYS.daily, all); render(true); return;
   }
   if (a === "dl-save") {
-    const all = getDailyToday();
-    const cur = all[todayStr()];
-    const w = parseFloat($("#d-weight").value);
-    cur.weight = isNaN(w) ? null : w;
-    cur.note = $("#d-note").value.trim();
-    store.set(KEYS.daily, all); toast("已保存"); syncDailyToGitHub(); render(true); return;
+    harvestDailyDraft();
+    store.set(KEYS.daily, getDailyToday()); toast("已保存"); syncDailyToGitHub(); render(true); return;
   }
   if (a === "save-token") {
     const tok = $("#gh-token-input").value.trim();
