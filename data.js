@@ -138,7 +138,7 @@ const FIT_DATA = {
     ]},
     { date: "2026-11-15", title: "Spoto 第二课（RIR纪律）", note: "热身：肩袖激活 → 空杆×15 → 40×8 → 50×5；本周按60kg做，但RIR回到2", exercises: [
       { ex: "spoto_press", sets: 4, weight: 60, reps: [6, 5], rir: 2, note: "上周60×6实际RIR0-1偏深；本周同重量但每组留2次余地" },
-      { ex: "t_bar_row", sets: 4, weight: 50, reps: [12, 10], rir: 2, note: "50kg成立，加1组：容量反馈采纳" },
+      { ex: "db_row", sets: 4, weight: 45, reps: [12, 10], rir: 2, note: "两馆均无T杠（11-08确认），永久换凳上支撑哑铃划船：单手撑凳护腰；45kg基准，若馆内有坐姿绳索划船也可等量替换" },
       { ex: "lat_pulldown", sets: 2, weight: 45, reps: [10, 9], rir: 2, note: "新增：周末馆高位下拉，补背部容量" },
       { ex: "incline_flye", sets: 3, weight: 12.5, reps: [10, 10], rir: 2 }
     ]}
