@@ -110,20 +110,20 @@ const FIT_DATA = {
       { ex: "incline_flye", sets: 3, weight: 12.5, reps: [10, 10], rir: 2 }
     ]},
     { date: "2026-11-09", title: "休息", rest: true, note: "Spoto后胸三头恢复 + 深蹲DOMS消退期" },
-    { date: "2026-11-10", title: "腿日（哈克渐进）", note: "腿日固定周二版首周：距周六深蹲76h，DOMS已清", exercises: [
-      { ex: "hack_squat", sets: 4, weight: 118, reps: [11, 10], rir: 2, note: "118×10基准上渐进：目标11-12次；RIR不够就停在10" },
+    { date: "2026-11-10", title: "腿日（哈克渐进）", note: "回归课DOMS残留属正常。裁决测试：徒手蹲→空杆→50kg热身，酸胀逐组松开则照练；仍尖锐疼则本课与周三胸背对调", exercises: [
+      { ex: "hack_squat", sets: 4, weight: 118, reps: [11, 10], rir: 2, note: "第一组后RIR感知清晰才冲11次，模糊则停在10" },
       { ex: "leg_curl", sets: 3, weight: 52.5, reps: [12, 12], rir: 2, note: "补腘绳：客户馆基准" },
       { ex: "leg_ext", sets: 2, weight: 39, reps: [12, 12], rir: 2, note: "降至2组：周六已有深蹲，控总量" },
       { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [14, 14], rir: 2, note: "收尾" }
     ]},
-    { date: "2026-11-11", title: "休息", rest: true, note: "" },
-    { date: "2026-11-12", title: "Day 1 胸+背（停顿版·升档）", note: "距周日Spoto 96h；停顿版已追平非停顿，正式升25/边", exercises: [
+    { date: "2026-11-11", title: "Day 1 胸+背（停顿版·升档）", note: "周四改休息（用户定），本课提前到周三：距周日Spoto约80h；与周二腿为不同肌群连练，允许", exercises: [
       { ex: "smith_incline", sets: 3, weight: 25, reps: [8, 6], rir: 2, note: "停顿1秒；首组若8次做不到稳回22.5，不硬撑" },
       { ex: "lat_pulldown", sets: 3, weight: 45, reps: [10, 9], rir: 2 },
       { ex: "db_incline_press", sets: 3, weight: 22.5, reps: [10, 8], rir: 2, note: "上周22.5×10为PR，目标三组均匀" },
       { ex: "db_row", sets: 3, weight: 25, reps: [10, 9], rir: 2, note: "上周首组25×10成立，本周正式以25为主" },
       { ex: "straight_arm_pulldown", sets: 2, weight: 35, reps: [12, 12], rir: 2 }
     ]},
+    { date: "2026-11-12", title: "休息", rest: true, note: "用户定的休息日" },
     { date: "2026-11-13", title: "Day 4 肩+手臂", note: "侧平举升重试探；三头维持2组护肘", exercises: [
       { ex: "db_shoulder_press", sets: 3, weight: 22.5, reps: [8, 8], rir: 1, note: "目标三组均匀8/8/8，达成后下周升25" },
       { ex: "lateral_raise", sets: 4, weight: 12.5, reps: [10, 8], rir: 1, note: "升重试探：首组10×10做不到就回10kg做到16+" },
