@@ -1,0 +1,118 @@
+{
+  "id": 1794313605368,
+  "date": "2026-11-10",
+  "title": "腿日（哈克渐进）",
+  "startedAt": "19:48",
+  "finishedAt": "20:26",
+  "note": "回归课DOMS残留属正常。裁决测试：徒手蹲→空杆→50kg热身，酸胀逐组松开则照练；仍尖锐疼则本课与周三胸背对调",
+  "entries": [
+    {
+      "ex": "hack_squat",
+      "sets": [
+        {
+          "w": 104.4,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 118,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 118,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 118,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "leg_curl",
+      "sets": [
+        {
+          "w": 52.5,
+          "reps": 12,
+          "rir": null,
+          "fail": false
+        },
+        {
+          "w": 52.5,
+          "reps": 12,
+          "rir": null,
+          "fail": false
+        },
+        {
+          "w": 52.5,
+          "reps": 12,
+          "rir": null,
+          "fail": false
+        }
+      ]
+    },
+    {
+      "ex": "leg_ext",
+      "sets": [
+        {
+          "w": 39,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 39,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 39,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "lying_leg_raise",
+      "sets": [
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": null,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": null,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": null,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    }
+  ]
+}
