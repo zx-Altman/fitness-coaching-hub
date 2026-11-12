@@ -123,13 +123,18 @@ const FIT_DATA = {
       { ex: "db_row", sets: 3, weight: 25, reps: [10, 9], rir: 2, note: "上周首组25×10成立，本周正式以25为主" },
       { ex: "straight_arm_pulldown", sets: 2, weight: 35, reps: [12, 12], rir: 2 }
     ]},
-    { date: "2026-11-12", title: "休息", rest: true, note: "用户定的休息日" },
-    { date: "2026-11-13", title: "Day 4 肩+手臂", note: "侧平举升重试探；三头维持2组护肘", exercises: [
-      { ex: "db_shoulder_press", sets: 3, weight: 22.5, reps: [8, 8], rir: 1, note: "目标三组均匀8/8/8，达成后下周升25" },
-      { ex: "lateral_raise", sets: 4, weight: 12.5, reps: [10, 8], rir: 1, note: "升重试探：首组10×10做不到就回10kg做到16+" },
+    { date: "2026-11-12", title: "Day 1 胸+背（停顿版·升档·补课）", note: "周三聚餐顺延：本课从11-11挪来；距周日Spoto已4天全恢复；停顿版正式升25/边", exercises: [
+      { ex: "smith_incline", sets: 3, weight: 25, reps: [8, 6], rir: 2, note: "停顿1秒；首组若8次做不到稳回22.5，不硬撑；左肩外侧再现疼即停推类" },
+      { ex: "lat_pulldown", sets: 3, weight: 45, reps: [10, 9], rir: 2 },
+      { ex: "db_incline_press", sets: 3, weight: 22.5, reps: [10, 8], rir: 2, note: "上周22.5×10为PR，目标三组均匀" },
+      { ex: "db_row", sets: 3, weight: 25, reps: [10, 9], rir: 2, note: "上周首组25×10成立，本周正式以25为主" },
+      { ex: "straight_arm_pulldown", sets: 2, weight: 35, reps: [12, 12], rir: 2 }
+    ]},
+    { date: "2026-11-13", title: "Day 4b 侧后束+手臂（去推类版）", note: "周四补课后<24h内不推类（前束/三头让位）：本课去掉推举与下压，保侧后束与二头", exercises: [
+      { ex: "lateral_raise", sets: 4, weight: 12.5, reps: [10, 8], rir: 1, note: "升重试探：首组10×10做不到就回10kg做到16+；侧束发沉就降一档" },
       { ex: "reverse_pec_deck", sets: 3, weight: 40, reps: [15, 12], rir: 1 },
-      { ex: "pushdown", sets: 2, weight: 40, reps: [10, 10], rir: 1, note: "护肘维持2组" },
-      { ex: "db_curl", sets: 3, weight: 12.5, reps: [10, 9], rir: 1 }
+      { ex: "db_curl", sets: 3, weight: 12.5, reps: [10, 9], rir: 1 },
+      { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [15, 15], rir: 2, note: "收尾补核心" }
     ]},
     { date: "2026-11-14", title: "自由深蹲（回归75kg）", note: "上周70×10×3零损失，正式回归75；热身：空杆×12 → 50×8 → 65×5", exercises: [
       { ex: "back_squat", sets: 4, weight: 75, reps: [8, 8], rir: 2, note: "瓦氏呼吸护腰；第4组崩到6次以内则第3组后收手" },
