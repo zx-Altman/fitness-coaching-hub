@@ -1,0 +1,133 @@
+{
+  "id": 1794485478579,
+  "date": "2026-11-12",
+  "title": "Day 1 胸+背（停顿版·升档·补课）",
+  "startedAt": "19:22",
+  "finishedAt": "20:11",
+  "note": "周三聚餐顺延：本课从11-11挪来；距周日Spoto已4天全恢复；停顿版正式升25/边",
+  "entries": [
+    {
+      "ex": "smith_incline",
+      "sets": [
+        {
+          "w": 25,
+          "reps": 7,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 25,
+          "reps": 7,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 25,
+          "reps": 5,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "lat_pulldown",
+      "sets": [
+        {
+          "w": 45,
+          "reps": 10,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 45,
+          "reps": 8,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 40,
+          "reps": 7,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "db_incline_press",
+      "sets": [
+        {
+          "w": 22.5,
+          "reps": 8,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 20,
+          "reps": 8,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 22.5,
+          "reps": 7,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "db_row",
+      "sets": [
+        {
+          "w": 25,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 25,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 25,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "straight_arm_pulldown",
+      "sets": [
+        {
+          "w": 35,
+          "reps": 11,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 35,
+          "reps": 10,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    }
+  ]
+}
