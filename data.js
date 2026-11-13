@@ -136,11 +136,10 @@ const FIT_DATA = {
       { ex: "db_curl", sets: 3, weight: 12.5, reps: [10, 9], rir: 1 },
       { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [15, 15], rir: 2, note: "收尾补核心" }
     ]},
-    { date: "2026-11-14", title: "深蹲75回归 + 侧后束收尾（周五缺课合并）", note: "周五侧后束课未执行，合并进本课收尾（与明日Spoto胸前三头零冲突）；热身：空杆×12 → 50×8 → 65×5", exercises: [
+    { date: "2026-11-14", title: "自由深蹲（回归75kg）", note: "上周70×10×3零损失，正式回归75；热身：空杆×12 → 50×8 → 65×5", exercises: [
       { ex: "back_squat", sets: 4, weight: 75, reps: [8, 8], rir: 2, note: "瓦氏呼吸护腰；第4组崩到6次以内则第3组后收手" },
       { ex: "leg_curl", sets: 3, weight: 45, reps: [12, 12], rir: 2, note: "周末馆基准45kg，目标12次×3" },
-      { ex: "lateral_raise", sets: 3, weight: 10, reps: [15, 15], rir: 1, note: "组合课收尾用基础重量，12.5试探留到下周新鲜位" },
-      { ex: "reverse_pec_deck", sets: 3, weight: 40, reps: [15, 15], rir: 1 }
+      { ex: "calf_raise", sets: 2, weight: 12.5, reps: [15, 15], rir: 2 }
     ]},
     { date: "2026-11-15", title: "Spoto 第二课（RIR纪律）", note: "热身：肩袖激活 → 空杆×15 → 40×8 → 50×5；本周按60kg做，但RIR回到2", exercises: [
       { ex: "spoto_press", sets: 4, weight: 60, reps: [6, 5], rir: 2, note: "上周60×6实际RIR0-1偏深；本周同重量但每组留2次余地" },
