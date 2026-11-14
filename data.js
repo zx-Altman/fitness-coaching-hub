@@ -27,6 +27,8 @@ const FIT_DATA = {
       cues: ["肘微屈、角度全程固定", "弧线下放至胸肌有拉伸感，想象抱一个桶", "不追求大重量，感受挤压"] },
     { id: "pec_deck", name: "蝴蝶机夹胸", equip: "器械", unit: "kg", step: 5, primary: "chest", secondary: [],
       cues: ["肘位与胸同高", "顶峰挤压1秒再回放", "不耸肩"] },
+    { id: "pushup", name: "停顿俯卧撑", equip: "自重", unit: "自重", primary: "chest", secondary: ["肩(前束)", "三头"],
+      cues: ["下到胸口离地一拳，底部停1秒", "无反弹发力（Spoto同款原则）", "躯干一条直线，肘约45°"] },
     { id: "dips", name: "双杠臂屈伸", equip: "自重", unit: "自重", primary: "chest", secondary: ["三头"],
       cues: ["身体前倾偏下胸，躯干竖直偏三头", "下放到上臂与地面平行即可", "肩部不适立即停止"] },
     { id: "lat_pulldown", name: "高位下拉", equip: "器械", unit: "kg", step: 5, primary: "back", secondary: ["二头"],
@@ -59,6 +61,8 @@ const FIT_DATA = {
       cues: ["全脚掌踩实", "下放到臀部不卷离靠垫", "膝盖不内扣"] },
     { id: "leg_curl", name: "腿弯举", equip: "器械", unit: "kg", step: 6.8, primary: "legs", secondary: [],
       cues: ["髋部贴稳不抬起", "顶峰停1秒", "离心控制2秒"] },
+    { id: "db_leg_curl", name: "哑铃腿弯举", equip: "哑铃", unit: "kg", primary: "legs", secondary: [],
+      cues: ["俯卧凳上，双脚夹住哑铃", "弯起顶峰停1秒，离心3秒", "下周二的腘绳主力（客户馆无腿弯举机）"] },
     { id: "leg_ext", name: "腿屈伸", equip: "器械", unit: "kg", step: 5, primary: "legs", secondary: [],
       cues: ["顶端挤压1秒", "离心2秒回放", "重量适中不弹震"] },
     { id: "bulgarian_split", name: "保加利亚剪蹲", equip: "哑铃", unit: "kg/只", primary: "legs", secondary: [],
@@ -136,16 +140,17 @@ const FIT_DATA = {
       { ex: "db_curl", sets: 3, weight: 12.5, reps: [10, 9], rir: 1 },
       { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [15, 15], rir: 2, note: "收尾补核心" }
     ]},
-    { date: "2026-11-14", title: "自由深蹲（回归75kg）", note: "上周70×10×3零损失，正式回归75；热身：空杆×12 → 50×8 → 65×5", exercises: [
-      { ex: "back_squat", sets: 4, weight: 75, reps: [8, 8], rir: 2, note: "瓦氏呼吸护腰；第4组崩到6次以内则第3组后收手" },
-      { ex: "leg_curl", sets: 3, weight: 45, reps: [12, 12], rir: 2, note: "周末馆基准45kg，目标12次×3" },
-      { ex: "calf_raise", sets: 2, weight: 12.5, reps: [15, 15], rir: 2 }
+    { date: "2026-11-14", title: "酒店腿课（维持版）", note: "本周末仅酒店馆可用（哑铃≤12kg+可调凳）：负重受限，用节奏和单侧补强度；75kg深蹲回归顺延至下周六", exercises: [
+      { ex: "bulgarian_split", sets: 4, weight: 12, reps: [15, 12], rir: 2, note: "每手12kg：下3秒+底停1秒，用节奏补负荷；RIR按节奏版估" },
+      { ex: "db_leg_curl", sets: 3, weight: 12, reps: [15, 12], rir: 2, note: "俯卧凳上双脚夹哑铃；离心3秒——腘绳本周唯一的直接刺激" },
+      { ex: "calf_raise", sets: 3, weight: 12, reps: [20, 15], rir: 2, note: "单腿提踵，顶端停2秒" },
+      { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [15, 15], rir: 2, note: "收尾" }
     ]},
-    { date: "2026-11-15", title: "Spoto 第二课（RIR纪律）", note: "热身：肩袖激活 → 空杆×15 → 40×8 → 50×5；本周按60kg做，但RIR回到2", exercises: [
-      { ex: "spoto_press", sets: 4, weight: 60, reps: [6, 5], rir: 2, note: "上周60×6实际RIR0-1偏深；本周同重量但每组留2次余地" },
-      { ex: "db_row", sets: 4, weight: 45, reps: [12, 10], rir: 2, note: "两馆均无T杠（11-08确认），永久换凳上支撑哑铃划船：单手撑凳护腰；45kg基准，若馆内有坐姿绳索划船也可等量替换" },
-      { ex: "lat_pulldown", sets: 2, weight: 45, reps: [10, 9], rir: 2, note: "新增：周末馆高位下拉，补背部容量" },
-      { ex: "incline_flye", sets: 3, weight: 12.5, reps: [10, 10], rir: 2 }
+    { date: "2026-11-15", title: "酒店上肢课（维持版+肩部补课）", note: "周五侧后束课未执行，并入本课；停顿俯卧撑=Spoto同款「无反弹发力」，保持动作模式不生锈", exercises: [
+      { ex: "pushup", sets: 4, weight: 0, reps: [15, 12], rir: 2, note: "胸口离地一拳停1秒再推——这就是悬停卧推的徒手版；做不到12次就垫高双手" },
+      { ex: "lateral_raise", sets: 4, weight: 10, reps: [15, 13], rir: 1, note: "周五欠账；10kg基础重量（12.5试探留到正常馆）" },
+      { ex: "reverse_pec_deck", sets: 3, weight: 7.5, reps: [15, 15], rir: 1, note: "酒店馆可能无反向飞鸟机：换俯身哑铃反向飞鸟7.5kg/只" },
+      { ex: "db_curl", sets: 3, weight: 12, reps: [12, 10], rir: 1 }
     ]}
   ],
 
