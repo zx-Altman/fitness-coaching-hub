@@ -232,7 +232,7 @@
   <button data-tab="daily"><span class="ico">☀</span>日常</button>
 </div></nav>
 
-<script src="data.js?v=2026-11-14b"></script>
+<script src="data.js?v=2026-11-14c"></script>
 <script>
 "use strict";
 /* ===== 存储 ===== */
@@ -540,7 +540,8 @@ function renderLogging() {
 
       let adviceHtml = "";
       const stp = ex.step || 2.5;
-      if (s.reps > 0) {
+      const hasNext = si < ent.sets.length - 1;
+      if (s.reps > 0 && hasNext) {
         if (s.fail) {
           adviceHtml = `<div class="sub" style="font-size:12px;color:var(--serious);margin-top:6px">⚠️ 本组未完成/力竭：建议下一组降低 ${stp}kg 或延长组间休息</div>`;
         } else if (s.rir !== null && s.rir >= 3) {
