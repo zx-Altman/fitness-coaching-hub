@@ -29,6 +29,8 @@
   },
   "2026-11-12": {
     "weight": null,
-    "note": "第二个动作做的是哑铃划船"
+    "note": "第二个动作做的是哑铃划船",
+    "creatine": true,
+    "whey": true
   }
 }
