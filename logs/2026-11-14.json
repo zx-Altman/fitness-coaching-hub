@@ -1,0 +1,121 @@
+{
+  "id": 1794651145066,
+  "date": "2026-11-14",
+  "title": "酒店腿课（维持版）",
+  "startedAt": "17:28",
+  "finishedAt": "18:12",
+  "note": "本周末仅酒店馆可用（哑铃≤12kg+可调凳）：负重受限，用节奏和单侧补强度；75kg深蹲回归顺延至下周六",
+  "entries": [
+    {
+      "ex": "bulgarian_split",
+      "sets": [
+        {
+          "w": 12,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12,
+          "reps": 12,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 9.5,
+          "reps": 12,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "db_leg_curl",
+      "sets": [
+        {
+          "w": 12,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "calf_raise",
+      "sets": [
+        {
+          "w": 12,
+          "reps": 20,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12,
+          "reps": 20,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12,
+          "reps": 20,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "lying_leg_raise",
+      "sets": [
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    }
+  ]
+}
