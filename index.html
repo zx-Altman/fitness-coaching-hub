@@ -232,7 +232,7 @@
   <button data-tab="daily"><span class="ico">☀</span>日常</button>
 </div></nav>
 
-<script src="data.js?v=2026-11-16"></script>
+<script src="data.js?v=2026-11-17"></script>
 <script>
 "use strict";
 /* ===== 存储 ===== */
@@ -524,13 +524,19 @@ function renderLogging() {
       return { date: l.date, text: e2.sets.map(s => `${s.w || "自重"}×${s.reps}`).join(" / ") };
     })();
     const best = bestPerf(ent.ex);
+    // 处方 vs 上次实际重量对比：教练刻意加减重时给可见提示
+    const lastW = lp ? parseFloat(lp.text.split(" / ")[0].split("×")[0]) : NaN;
+    const tgtW = ent.target ? ent.target.weight : null;
+    const wDelta = (tgtW && !isNaN(lastW)) ? Math.round((tgtW - lastW) * 10) / 10 : 0;
     html += `<div class="card">
       <div class="row">
         <div class="grow"><b>${esc(ex.name)}</b> <span class="tag">${ex.equip}</span></div>
+        <button class="btn btn-sm" data-a="ex-up" data-i="${ei}" ${ei === 0 ? "disabled" : ""}>↑</button>
+        <button class="btn btn-sm" data-a="ex-down" data-i="${ei}" ${ei === active.entries.length - 1 ? "disabled" : ""}>↓</button>
         <button class="btn btn-sm" data-a="addset" data-i="${ei}">+ 组</button>
       </div>
       ${lp ? `<div class="sub mono" style="margin:2px 0 4px">上次 ${fmtShort(lp.date)}：${lp.text}</div>` : `<div class="sub" style="margin:2px 0 4px">首次记录</div>`}
-      ${ent.target ? `<div class="sub" style="font-size:12px">处方：${ent.target.weight || "自重"}${ex.unit !== "自重" && ent.target.weight ? " " + ex.unit : ""} × ${ent.target.reps[0]}-${ent.target.reps[1]} · RIR${ent.target.rir}</div>` : ""}
+      ${ent.target ? `<div class="sub" style="font-size:12px">处方：${ent.target.weight || "自重"}${ex.unit !== "自重" && ent.target.weight ? " " + ex.unit : ""} × ${ent.target.reps[0]}-${ent.target.reps[1]} · RIR${ent.target.rir}${wDelta > 0 ? `　<span style="color:var(--serious)">↑较上次+${wDelta}${ex.unit !== "自重" ? ex.unit : ""}（教练调整）</span>` : ""}${wDelta < 0 ? `　<span style="color:var(--accent)">↓较上次${wDelta}${ex.unit !== "自重" ? ex.unit : ""}（教练调整）</span>` : ""}${tgtW && !isNaN(lastW) && wDelta === 0 ? `　=与上次同重量` : ""}</div>` : ""}
       ${best ? `<div class="sub mono" style="font-size:12px">历史最佳：${best.w ? best.w + ex.unit : "自重"}×${best.reps}（${fmtShort(best.date)}）</div>` : ""}
     `;
     ent.sets.forEach((s, si) => {
@@ -1158,6 +1164,8 @@ $("#view").addEventListener("click", ev => {
     saveActive(); render(true); return;
   }
   if (a === "delset") { active.entries[i].sets.splice(j, 1); saveActive(); render(true); }
+  if (a === "ex-up" && i > 0) { const t = active.entries[i - 1]; active.entries[i - 1] = active.entries[i]; active.entries[i] = t; saveActive(); render(true); return; }
+  if (a === "ex-down" && i < active.entries.length - 1) { const t = active.entries[i + 1]; active.entries[i + 1] = active.entries[i]; active.entries[i] = t; saveActive(); render(true); return; }
   if (a === "w-inc" || a === "w-dec") {
     const s = active.entries[i].sets[j];
     const stepW = exById(active.entries[i].ex)?.step || 2.5;

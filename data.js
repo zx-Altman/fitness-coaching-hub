@@ -156,13 +156,13 @@ const FIT_DATA = {
       { ex: "lat_pulldown", sets: 3, weight: 45, reps: [10, 8], rir: 2, note: "疲劳位机器下拉，控离心" },
       { ex: "straight_arm_pulldown", sets: 2, weight: 35, reps: [12, 12], rir: 2 }
     ]},
-    { date: "2026-11-17", title: "腿日（哈克渐进 + 哑铃RDL首秀）", note: "距周六保加利亚72h，腿腰已恢复；客户馆无腿弯举，启用哑铃RDL", exercises: [
+    { date: "2026-11-17", title: "休息", rest: true, note: "用户定：腿日顺延至周三" },
+    { date: "2026-11-18", title: "腿日（哈克渐进 + 哑铃RDL首秀）", note: "从周二顺延；距周六保加利亚96h；客户馆无腿弯举，启用哑铃RDL；与周四肩臂为不同肌群连练，允许", exercises: [
       { ex: "hack_squat", sets: 4, weight: 120, reps: [12, 10], rir: 2, note: "120×12基准稳固，若第一组极其干脆可试122.5kg" },
       { ex: "db_rdl", sets: 3, weight: 12.5, reps: [12, 10], rir: 2, note: "腘绳新主力：髋后推，哑铃滑过膝盖下方，脊柱全程刚性中立" },
       { ex: "leg_ext", sets: 2, weight: 35, reps: [12, 12], rir: 2, note: "35kg×12次×2组，控总量" },
       { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [15, 15], rir: 2, note: "收尾" }
     ]},
-    { date: "2026-11-18", title: "休息", rest: true, note: "连练两天复合主项后中枢恢复" },
     { date: "2026-11-19", title: "Day 4 肩+手臂", note: "推举与侧平举满血日；三头维持2组护肘", exercises: [
       { ex: "db_shoulder_press", sets: 3, weight: 22.5, reps: [8, 8], rir: 1, note: "目标三组均匀8/8/8" },
       { ex: "lateral_raise", sets: 4, weight: 12.5, reps: [10, 8], rir: 1, note: "12.5kg升重试探：首组若不到10次降回10kg做15次" },
