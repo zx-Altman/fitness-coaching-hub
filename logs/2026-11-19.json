@@ -1,0 +1,121 @@
+{
+  "id": 1795086677581,
+  "date": "2026-11-19",
+  "title": "腿日（哈克渐进 + 哑铃RDL首秀）",
+  "startedAt": "18:36",
+  "finishedAt": "19:11",
+  "note": "从周三顺延（周二三连休）；距周六保加利亚5天；距周六深蹲约64h，间隔成立",
+  "entries": [
+    {
+      "ex": "hack_squat",
+      "sets": [
+        {
+          "w": 120,
+          "reps": 12,
+          "rir": 3,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 140,
+          "reps": 10,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 140,
+          "reps": 10,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 140,
+          "reps": 10,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "leg_ext",
+      "sets": [
+        {
+          "w": 45,
+          "reps": 8,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 40,
+          "reps": 8,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 35,
+          "reps": 9,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "db_rdl",
+      "sets": [
+        {
+          "w": 14.5,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 14.5,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 14.5,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "lying_leg_raise",
+      "sets": [
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": 3,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    }
+  ]
+}
