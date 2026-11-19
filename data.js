@@ -163,14 +163,19 @@ const FIT_DATA = {
       { ex: "leg_ext", sets: 2, weight: 35, reps: [12, 12], rir: 2, note: "35kg×12次×2组，控总量" },
       { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [15, 15], rir: 2, note: "收尾" }
     ]},
-    { date: "2026-11-19", title: "Day 4 肩+手臂", note: "推举与侧平举满血日；三头维持2组护肘", exercises: [
+    { date: "2026-11-19", title: "腿日（哈克渐进 + 哑铃RDL首秀）", note: "从周三顺延（周二三连休）；距周六保加利亚5天；距周六深蹲约64h，间隔成立", exercises: [
+      { ex: "hack_squat", sets: 4, weight: 120, reps: [12, 10], rir: 2, note: "120×12基准稳固，第一组干脆可试122.5kg" },
+      { ex: "db_rdl", sets: 3, weight: 12.5, reps: [12, 10], rir: 2, note: "腘绳新主力：髋后推，哑铃滑过膝盖下方，脊柱全程刚性中立" },
+      { ex: "leg_ext", sets: 2, weight: 35, reps: [12, 12], rir: 2 },
+      { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [15, 15], rir: 2, note: "收尾" }
+    ]},
+    { date: "2026-11-20", title: "Day 4 肩+手臂", note: "从周四顺延；侧后束距上次直接刺激已13天，欠账最重的一课", exercises: [
       { ex: "db_shoulder_press", sets: 3, weight: 22.5, reps: [8, 8], rir: 1, note: "目标三组均匀8/8/8" },
       { ex: "lateral_raise", sets: 4, weight: 12.5, reps: [10, 8], rir: 1, note: "12.5kg升重试探：首组若不到10次降回10kg做15次" },
       { ex: "reverse_pec_deck", sets: 3, weight: 40, reps: [15, 12], rir: 1 },
       { ex: "pushdown", sets: 2, weight: 40, reps: [10, 10], rir: 1, note: "护肘维持2组" },
       { ex: "db_curl", sets: 3, weight: 12.5, reps: [10, 9], rir: 1 }
     ]},
-    { date: "2026-11-20", title: "休息", rest: true, note: "为周末大复合专场蓄力" },
     { date: "2026-11-21", title: "自由深蹲（回归75kg）", note: "周末自由馆：75kg正式回归日；热身：空杆×12 → 50×8 → 65×5", exercises: [
       { ex: "back_squat", sets: 4, weight: 75, reps: [8, 8], rir: 2, note: "瓦氏呼吸护腰；第4组若跌出6次则收手" },
       { ex: "leg_curl", sets: 3, weight: 45, reps: [12, 12], rir: 2, note: "周末馆器械基准45kg" },
