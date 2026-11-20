@@ -1,0 +1,147 @@
+{
+  "id": 1795153642512,
+  "date": "2026-11-20",
+  "title": "Day 4 肩+手臂",
+  "startedAt": "13:04",
+  "finishedAt": "13:47",
+  "note": "从周四顺延；侧后束距上次直接刺激已13天，欠账最重的一课",
+  "entries": [
+    {
+      "ex": "db_shoulder_press",
+      "sets": [
+        {
+          "w": 22.5,
+          "reps": 8,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 22.5,
+          "reps": 8,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 22.5,
+          "reps": 6,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "lateral_raise",
+      "sets": [
+        {
+          "w": 12.5,
+          "reps": 8,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12.5,
+          "reps": 8,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 10,
+          "reps": 14,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 10,
+          "reps": 12,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "reverse_pec_deck",
+      "sets": [
+        {
+          "w": 40,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 40,
+          "reps": 13,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 40,
+          "reps": 13,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "pushdown",
+      "sets": [
+        {
+          "w": 40,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 40,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 40,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "db_curl",
+      "sets": [
+        {
+          "w": 12.5,
+          "reps": 8,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12.5,
+          "reps": 8,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12.5,
+          "reps": 8,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    }
+  ]
+}
