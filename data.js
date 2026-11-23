@@ -186,6 +186,40 @@ const FIT_DATA = {
       { ex: "db_row", sets: 4, weight: 45, reps: [12, 10], rir: 2, note: "凳上支撑单臂划船：45kg基准" },
       { ex: "lat_pulldown", sets: 2, weight: 45, reps: [10, 9], rir: 2, note: "补背部容量" },
       { ex: "incline_flye", sets: 3, weight: 12.5, reps: [10, 10], rir: 2 }
+    ]},
+    { date: "2026-11-23", title: "Day 1 胸+背（回归基线周）", note: "恢复正常训练周期：胸背距上次已7天全恢复；本周纪律=每堂课钉在课表上", exercises: [
+      { ex: "smith_incline", sets: 3, weight: 25, reps: [8, 7], rir: 2, note: "目标：三组RIR全部做成2（上周8/7/6，RIR2/1/1）" },
+      { ex: "db_row", sets: 3, weight: 25, reps: [12, 10], rir: 2, note: "手撑凳护腰" },
+      { ex: "db_incline_press", sets: 3, weight: 22.5, reps: [10, 8], rir: 2 },
+      { ex: "lat_pulldown", sets: 3, weight: 45, reps: [9, 8], rir: 2, note: "锚点已修正：上次实际45×8 RIR2，本周9/9/8即达标" },
+      { ex: "straight_arm_pulldown", sets: 2, weight: 35, reps: [12, 12], rir: 2 }
+    ]},
+    { date: "2026-11-24", title: "腿日（140稳固课）", note: "哈克新基准140×10：本周不加重量，把RIR从1做成2（与史密斯25/边同路线）", exercises: [
+      { ex: "hack_squat", sets: 4, weight: 140, reps: [10, 8], rir: 2, note: "140×10 RIR2为唯一目标；第4组掉出8次正常，记录真实RIR" },
+      { ex: "db_rdl", sets: 3, weight: 15, reps: [12, 10], rir: 2, note: "上次14.5×10成立：髋后推、脊柱刚性、离心3秒；腰有感觉即停" },
+      { ex: "leg_ext", sets: 2, weight: 40, reps: [12, 10], rir: 2, note: "从45×8的重试错重置：40做12次" },
+      { ex: "calf_raise", sets: 3, weight: 12.5, reps: [15, 15], rir: 2, note: "小腿上周零容量，回归" },
+      { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [15, 15], rir: 2, note: "收尾" }
+    ]},
+    { date: "2026-11-25", title: "休息", rest: true, note: "" },
+    { date: "2026-11-26", title: "Day 4 肩+手臂", note: "侧平举12.5试探失败回炉：10kg做次数；推举第三次冲击8/8/7", exercises: [
+      { ex: "db_shoulder_press", sets: 3, weight: 22.5, reps: [8, 7], rir: 1, note: "两次8/8/6未成：组间休息拉满2.5-3分钟再冲第三组" },
+      { ex: "lateral_raise", sets: 4, weight: 10, reps: [16, 14], rir: 1, note: "12.5吃力动作变形（11-20确认）：回10kg做满次数，2-3周后再试12.5" },
+      { ex: "reverse_pec_deck", sets: 3, weight: 40, reps: [13, 12], rir: 1 },
+      { ex: "pushdown", sets: 2, weight: 40, reps: [10, 10], rir: 1, note: "回2组护肘" },
+      { ex: "db_curl", sets: 3, weight: 12.5, reps: [10, 8], rir: 1 }
+    ]},
+    { date: "2026-11-27", title: "休息", rest: true, note: "" },
+    { date: "2026-11-28", title: "自由深蹲（回归75kg）", note: "第三次排上：距上次自由深蹲已3周，70×10底子仍在；热身：空杆×12 → 50×8 → 65×5", exercises: [
+      { ex: "back_squat", sets: 4, weight: 75, reps: [8, 8], rir: 2, note: "瓦氏呼吸护腰；第4组掉出6次则第3组后收手" },
+      { ex: "leg_curl", sets: 3, weight: 45, reps: [12, 12], rir: 2, note: "周末馆器械基准" },
+      { ex: "calf_raise", sets: 2, weight: 12.5, reps: [15, 15], rir: 2 }
+    ]},
+    { date: "2026-11-29", title: "Spoto 第二课（RIR纪律）", note: "热身：肩袖激活 → 空杆×15 → 40×8 → 50×5；距周一胸背已6天，胸完全恢复", exercises: [
+      { ex: "spoto_press", sets: 4, weight: 60, reps: [6, 5], rir: 2, note: "60kg悬停：目标RIR严格2，不冲次数" },
+      { ex: "db_row", sets: 4, weight: 45, reps: [12, 10], rir: 2, note: "凳上支撑单臂划船45kg" },
+      { ex: "lat_pulldown", sets: 2, weight: 45, reps: [9, 8], rir: 2 },
+      { ex: "incline_flye", sets: 3, weight: 12.5, reps: [10, 10], rir: 2 }
     ]}
   ],
 
