@@ -1,0 +1,133 @@
+{
+  "id": 1795433741201,
+  "date": "2026-11-23",
+  "title": "Day 1 胸+背（回归基线周）",
+  "startedAt": "18:41",
+  "finishedAt": "19:35",
+  "note": "恢复正常训练周期：胸背距上次已7天全恢复；本周纪律=每堂课钉在课表上",
+  "entries": [
+    {
+      "ex": "db_row",
+      "sets": [
+        {
+          "w": 25,
+          "reps": 10,
+          "rir": 3,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 25,
+          "reps": 11,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 25,
+          "reps": 11,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "smith_incline",
+      "sets": [
+        {
+          "w": 25,
+          "reps": 8,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 25,
+          "reps": 8,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 25,
+          "reps": 6,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "db_incline_press",
+      "sets": [
+        {
+          "w": 22.5,
+          "reps": 8,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 22.5,
+          "reps": 7,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 20,
+          "reps": 7,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "lat_pulldown",
+      "sets": [
+        {
+          "w": 45,
+          "reps": 10,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 45,
+          "reps": 8,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 45,
+          "reps": 8,
+          "rir": 0,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "straight_arm_pulldown",
+      "sets": [
+        {
+          "w": 35,
+          "reps": 12,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 35,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    }
+  ]
+}
