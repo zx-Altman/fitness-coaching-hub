@@ -1,0 +1,133 @@
+{
+  "id": 1795525739006,
+  "date": "2026-11-24",
+  "title": "腿日（140稳固课）",
+  "startedAt": "19:28",
+  "finishedAt": "21:08",
+  "note": "哈克新基准140×10：本周不加重量，把RIR从1做成2（与史密斯25/边同路线）",
+  "entries": [
+    {
+      "ex": "hack_squat",
+      "sets": [
+        {
+          "w": 140,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 140,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 140,
+          "reps": 8,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "db_rdl",
+      "sets": [
+        {
+          "w": 15,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 15,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 15,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "leg_ext",
+      "sets": [
+        {
+          "w": 40,
+          "reps": 8,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 40,
+          "reps": 8,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "calf_raise",
+      "sets": [
+        {
+          "w": 12.5,
+          "reps": 20,
+          "rir": 4,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12.5,
+          "reps": 20,
+          "rir": 4,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 15,
+          "reps": 20,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "lying_leg_raise",
+      "sets": [
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 0,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    }
+  ]
+}
