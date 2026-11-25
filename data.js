@@ -201,14 +201,14 @@ const FIT_DATA = {
       { ex: "calf_raise", sets: 3, weight: 12.5, reps: [15, 15], rir: 2, note: "小腿上周零容量，回归" },
       { ex: "lying_leg_raise", sets: 2, weight: 0, reps: [15, 15], rir: 2, note: "收尾" }
     ]},
-    { date: "2026-11-25", title: "休息", rest: true, note: "" },
-    { date: "2026-11-26", title: "Day 4 肩+手臂", note: "侧平举12.5试探失败回炉：10kg做次数；推举第三次冲击8/8/7", exercises: [
+    { date: "2026-11-25", title: "Day 4 肩+手臂（提前）", note: "与周四对调（用户定明天休息）；肩臂距上次已5天全恢复；今天顺便记录组间休息时长", exercises: [
       { ex: "db_shoulder_press", sets: 3, weight: 22.5, reps: [8, 7], rir: 1, note: "两次8/8/6未成：组间休息拉满2.5-3分钟再冲第三组" },
       { ex: "lateral_raise", sets: 4, weight: 10, reps: [16, 14], rir: 1, note: "12.5吃力动作变形（11-20确认）：回10kg做满次数，2-3周后再试12.5" },
       { ex: "reverse_pec_deck", sets: 3, weight: 40, reps: [13, 12], rir: 1 },
       { ex: "pushdown", sets: 2, weight: 40, reps: [10, 10], rir: 1, note: "回2组护肘" },
       { ex: "db_curl", sets: 3, weight: 12.5, reps: [10, 8], rir: 1 }
     ]},
+    { date: "2026-11-26", title: "休息", rest: true, note: "用户定" },
     { date: "2026-11-27", title: "休息", rest: true, note: "" },
     { date: "2026-11-28", title: "自由深蹲（回归75kg）", note: "第三次排上：距上次自由深蹲已3周，70×10底子仍在；热身：空杆×12 → 50×8 → 65×5", exercises: [
       { ex: "back_squat", sets: 4, weight: 75, reps: [8, 8], rir: 2, note: "瓦氏呼吸护腰；第4组掉出6次则第3组后收手" },
