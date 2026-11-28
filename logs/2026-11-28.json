@@ -1,0 +1,95 @@
+{
+  "id": 1795846309978,
+  "date": "2026-11-28",
+  "title": "自由深蹲（回归75kg）",
+  "startedAt": "11:13",
+  "finishedAt": "14:11",
+  "note": "第三次排上：距上次自由深蹲已3周，70×10底子仍在；热身：空杆×12 → 50×8 → 65×5",
+  "entries": [
+    {
+      "ex": "back_squat",
+      "sets": [
+        {
+          "w": 75,
+          "reps": 9,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 75,
+          "reps": 9,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 75,
+          "reps": 8,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 75,
+          "reps": 8,
+          "rir": 1,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "leg_curl",
+      "sets": [
+        {
+          "w": 45,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 45,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 45,
+          "reps": 10,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    },
+    {
+      "ex": "calf_raise",
+      "sets": [
+        {
+          "w": 12.5,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12.5,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        },
+        {
+          "w": 12.5,
+          "reps": 15,
+          "rir": 2,
+          "fail": false,
+          "touched": true
+        }
+      ]
+    }
+  ]
+}
